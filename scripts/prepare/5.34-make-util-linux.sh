@@ -1,10 +1,14 @@
 #!/bin/bash
-set -e
-echo "Building Util-linux.."
-echo "Approximate build time: 0.9 SBU"
-echo "Required disk space: 131 MB"
 
-# 5.34. Util-linux package contains miscellaneous utility programs
+# 5.34. Util-linux-2.35.1
+# The Util-linux package contains miscellaneous utility programs.
+
+set -e
+
+echo "Building util-linux..."
+echo "Approximate build time: 0.9 SBU"
+echo "Required disk space: 154 MB"
+
 tar -xf util-linux-*.tar.xz -C /tmp/ \
   && mv /tmp/util-linux-* /tmp/util-linux \
   && pushd /tmp/util-linux \

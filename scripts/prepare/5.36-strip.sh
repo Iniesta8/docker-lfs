@@ -1,5 +1,9 @@
 #!/bin/bash
+
+# 5.36. Stripping
+
 set -e
+
 echo "Stripping.."
 
 # The steps in this section are optional, but if the LFS partition is rather
