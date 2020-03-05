@@ -1,11 +1,15 @@
 #!/bin/bash
-set -e
-echo "Building binutils.."
-echo "Approximate build time: 1.1 SBU"
-echo "Required disk space: 574 MB"
 
-# 5.9. Pass 2 Binutils package contains a linker, an assembler,
-# and other tools for handling object files
+# 5.9. Binutils-2.34 - Pass 2
+# The Binutils package contains a linker, an assembler,
+# and other tools for handling object files. 
+
+set -e
+
+echo "Building binutils..."
+echo "Approximate build time: 1.1 SBU"
+echo "Required disk space: 651 MB"
+
 tar -xf binutils-*.tar.xz -C /tmp/ \
   && mv /tmp/binutils-* /tmp/binutils \
   && pushd /tmp/binutils \

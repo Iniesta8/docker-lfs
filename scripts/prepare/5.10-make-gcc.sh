@@ -1,11 +1,15 @@
 #!/bin/bash
-set -e
-echo "Building gcc.."
-echo "Approximate build time: 11 SBU"
-echo "Required disk space: 2.6 GB"
 
-# 5.10. Pass 2 GCC package contains the GNU compiler collection,
-# which includes the C and C++ compilers
+# 5.10. GCC-9.2.0 - Pass 2
+# The GCC package contains the GNU compiler collection,
+# which includes the C and C++ compilers. 
+
+set -e
+
+echo "Building gcc..."
+echo "Approximate build time: 13 SBU"
+echo "Required disk space: 3.7 GB"
+
 tar -xf gcc-*.tar.xz -C /tmp/ \
   && mv /tmp/gcc-* /tmp/gcc \
   && pushd /tmp/gcc \
@@ -28,6 +32,8 @@ tar -xf gcc-*.tar.xz -C /tmp/ \
        sed -e '/m64=/s/lib64/lib/' -i.orig gcc/config/i386/t-linux64 \
       ;; \
     esac \
+  && sed -e '1161 s|^|//|' \
+    -i libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cc \
   && mkdir -v build \
   && cd build \
   && CC=$LFS_TGT-gcc        \
@@ -49,7 +55,7 @@ tar -xf gcc-*.tar.xz -C /tmp/ \
   && popd \
   && rm -rf /tmp/gcc
 
-# perform a sanity check
+# Perform a sanity check
 echo 'int main(){}' > dummy.c \
   && cc dummy.c \
   && readelf -l a.out | grep ': /tools' \

@@ -1,32 +1,36 @@
 #!/bin/bash
-set -e
-echo "Building glibc.."
-echo "Approximate build time: 4.3 SBU"
-echo "Required disk space: 823 MB"
 
-# 5.7. Glibc package contains the main C library. This library provides
-# the basic routines for allocating memory, searching directories, opening
-# and closing files, reading and writing files, string handling, pattern
-# matching, arithmetic, and so on
+# 5.7. Glibc-2.31
+# The Glibc package contains the main C library.
+# This library provides the basic routines for allocating memory,
+# searching directories, opening and closing files, reading and
+# writing files, string handling, pattern matching, arithmetic,
+# and so on. 
+
+set -e
+
+echo "Building glibc..."
+echo "Approximate build time: 4.5 SBU"
+echo "Required disk space: 896 MB"
+
+
 tar -xf glibc-*.tar.xz -C /tmp/ \
   && mv /tmp/glibc-* /tmp/glibc \
   && pushd /tmp/glibc \
   && mkdir -v build \
   && cd build \
-  && ../configure                       \
+  && ../configure                      \
     --prefix=/tools                    \
     --host=$LFS_TGT                    \
     --build=$(../scripts/config.guess) \
     --enable-kernel=3.2                \
-    --with-headers=/tools/include      \
-    libc_cv_forced_unwind=yes          \
-    libc_cv_c_cleanup=yes              \
+    --with-headers=/tools/include
   && make \
   && make install \
   && popd \
   && rm -rf /tmp/glibc
 
-# perform a sanity check that basic functions (compiling and linking)
+# Perform a sanity check that basic functions (compiling and linking)
 # are working as expected
 echo 'int main(){}' > dummy.c \
   && $LFS_TGT-gcc dummy.c \

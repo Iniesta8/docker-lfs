@@ -1,11 +1,15 @@
 #!/bin/bash
-set -e
-echo "Building gcc.."
-echo "Approximate build time: 8.9 SBU"
-echo "Required disk space: 2.2 GB"
 
-# 5.5. Pass 1 GCC package contains the GNU compiler collection,
-# which includes the C and C++ compilers
+# 5.5. GCC-9.2.0 - Pass 1
+# The GCC package contains the GNU compiler collection,
+# which includes the C and C++ compilers. 
+
+set -e
+
+echo "Building gcc..."
+echo "Approximate build time: 10 SBU"
+echo "Required disk space: 3.1 GB"
+
 tar -xf gcc-*.tar.xz -C /tmp/ \
   && mv /tmp/gcc-* /tmp/gcc \
   && pushd /tmp/gcc \
@@ -28,7 +32,7 @@ tar -xf gcc-*.tar.xz -C /tmp/ \
     esac \
   && mkdir -v build \
   && cd build \
-  && ../configure                                   \
+  && ../configure                                  \
     --target=$LFS_TGT                              \
     --prefix=/tools                                \
     --with-glibc-version=2.11                      \
@@ -44,12 +48,11 @@ tar -xf gcc-*.tar.xz -C /tmp/ \
     --disable-threads                              \
     --disable-libatomic                            \
     --disable-libgomp                              \
-    --disable-libmpx                               \
     --disable-libquadmath                          \
     --disable-libssp                               \
     --disable-libvtv                               \
     --disable-libstdcxx                            \
-    --enable-languages=c,c++                       \
+    --enable-languages=c,c++
   && make \
   && make install \
   && popd \

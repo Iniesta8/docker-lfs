@@ -1,24 +1,30 @@
 #!/bin/bash
-set -e
-echo "Building libstdc.."
-echo "Approximate build time: 0.4 SBU"
-echo "Required disk space: 752 MB"
 
-# 5.8. Libstdc++ is the standard C++ library. It is needed for
-# the correct operation of the g++ compile
+# 5.8. Libstdc++ from GCC-9.2.0 
+# Libstdc++ is the standard C++ library.
+# It is needed to compile C++ code (part of GCC is written in C++),
+# but we had to defer its installation when we built gcc-pass1
+# because it depends on glibc, which was not yet available in /tools. 
+
+set -e
+
+echo "Building libstdc..."
+echo "Approximate build time: 0.5 SBU"
+echo "Required disk space: 878 MB"
+
 tar -xf gcc-*.tar.xz -C /tmp/ \
   && mv /tmp/gcc-* /tmp/gcc \
   && pushd /tmp/gcc \
   && mkdir -v build \
   && cd build \
-  && ../libstdc++-v3/configure        \
-     --host=$LFS_TGT                 \
-     --prefix=/tools                 \
-     --disable-multilib              \
-     --disable-nls                   \
-     --disable-libstdcxx-threads     \
-     --disable-libstdcxx-pch         \
-     --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/7.3.0 \
+  && ../libstdc++-v3/configure      \
+    --host=$LFS_TGT                 \
+    --prefix=/tools                 \
+    --disable-multilib              \
+    --disable-nls                   \
+    --disable-libstdcxx-threads     \
+    --disable-libstdcxx-pch         \
+    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/9.2.0
   && make \
   && make install \
   && popd \
