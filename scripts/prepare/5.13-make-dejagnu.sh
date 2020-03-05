@@ -1,10 +1,14 @@
 #!/bin/bash
+
+# 5.13. DejaGNU-1.6.2
+# The DejaGNU package contains a framework for testing other programs.
+
 set -e
-echo "Building DejaGNU.."
+
+echo "Building DejaGNU..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 3.2 MB"
 
-# 5.13. DejaGNU package contains a framework for testing other programs
 tar -xf dejagnu-*.tar.gz -C /tmp/ \
   && mv /tmp/dejagnu-* /tmp/dejagnu \
   && pushd /tmp/dejagnu \

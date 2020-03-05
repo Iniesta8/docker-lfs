@@ -1,11 +1,15 @@
 #!/bin/bash
+
+# 5.15. Ncurses-6.2
+# The Ncurses package contains libraries for terminal-independent
+# handling of character screens. 
+
 set -e
-echo "Building Ncurses.."
-echo "Approximate build time:  0.5 SBU"
+
+echo "Building Ncurses..."
+echo "Approximate build time:  0.6 SBU"
 echo "Required disk space: 41 MB"
 
-# 5.15. Ncurses package contains libraries for terminal-independent
-# handling of character screens
 tar -xf ncurses-*.tar.gz -C /tmp/ \
   && mv /tmp/ncurses-* /tmp/ncurses \
   && pushd /tmp/ncurses \
@@ -19,5 +23,6 @@ tar -xf ncurses-*.tar.gz -C /tmp/ \
       --enable-overwrite \
   && make \
   && make install \
+  && ln -s libncursesw.so /tools/lib/libncurses.so \
   && popd \
   && rm -rf /tmp/ncurses
