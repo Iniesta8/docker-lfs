@@ -19,14 +19,9 @@ case "$FETCH_TOOLCHAIN_MODE" in
     echo "Check hashes.."
     md5sum -c md5sums
     ;;
-  # "1")
-  #   echo "Assume toolchain from host is already placed in sources folder"
-  #   ;;
-  # "2")
-  #   wget --timestamping https://github.com/reinterpretcat/lfs/releases/download/v8.2.0/toolchain.tar.gz
-  #   tar -xvf toolchain.tar.gz
-  #   rm toolchain.tar.gz
-  #   ;;
+  "1")
+    echo "Assume toolchain from host is already placed in sources folder"
+    ;;
   *)
     echo "Undefined way to get toolchain!"
     false
