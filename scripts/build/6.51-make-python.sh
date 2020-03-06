@@ -30,7 +30,7 @@ chmod -v 755 /usr/lib/libpython3.8.so
 chmod -v 755 /usr/lib/libpython3.so
 ln -sfv pip3.8 /usr/bin/pip3
 
-# install the preformatted documentation:
+# Install the preformatted documentation:
 if [ $LFS_DOCS -eq 1 ]; then
   install -v -dm755 /usr/share/doc/python-3.8.1/html 
 

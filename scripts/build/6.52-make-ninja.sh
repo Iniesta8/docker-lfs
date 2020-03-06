@@ -1,32 +1,35 @@
 #!/bin/bash
 set -e
-echo "Building Ninja.."
-echo "Approximate build time: 0.2 SBU"
-echo "Required disk space: 40 MB"
 
-# 6.51. Ninja is a small build system with a focus on speed.
+# 6.52. Ninja-1.10.0
+# Ninja is a small build system with a focus on speed.
+
+echo "Building Ninja..."
+echo "Approximate build time: 0.3 SBU"
+echo "Required disk space: 89 MB"
+
 tar -xf /sources/ninja-*.tar.gz -C /tmp/ \
   && mv /tmp/ninja-* /tmp/ninja \
   && pushd /tmp/ninja
 
-# Using the optional patch below allows a user to limit the number of parallel processes
-# via an environment variable, NINJAJOBS. For example setting:
-export NINJAJOBS=$JOB_COUNT
+# Add the capability to use the environment variable NINJAJOBS:
+sed -i '/int Guess/a \
+  int   j = 0;\
+  char* jobs = getenv( "NINJAJOBS" );\
+  if ( jobs != NULL ) j = atoi( jobs );\
+  if ( j > 0 ) return j;\
+' src/ninja.cc
 
-# prepare for compilation
-patch -Np1 -i /sources/ninja-1.8.2-add_NINJAJOBS_var-1.patch
-
-# Build package
+# Build Ninja:
 python3 configure.py --bootstrap
 
-# Run tests
+# Test the results:
 if [ $LFS_TEST -eq 1 ]; then
-    python3 configure.py
-    ./ninja ninja_test
-    ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots || true
+  ./ninja ninja_test
+  ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots
 fi
 
-# Install package
+# Install the package:
 install -vm755 ninja /usr/bin/
 install -vDm644 misc/bash-completion /usr/share/bash-completion/completions/ninja
 install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja
