@@ -12,9 +12,12 @@ echo "Required disk space: 1 GB"
 
 tar -xf linux-*.tar.xz -C /tmp/ \
   && mv /tmp/linux-* /tmp/linux \
-  && pushd /tmp/linux \
-  && make mrproper \
-  && make headers \
-  && cp -rv dest/include/* /tools/include \
-  && popd \
+  && pushd /tmp/linux
+
+make mrproper
+make headers
+
+cp -rv dest/include/* /tools/include
+
+popd \
   && rm -rf /tmp/linux

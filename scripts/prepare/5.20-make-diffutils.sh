@@ -12,10 +12,15 @@ echo "Required disk space: 26 MB"
 
 tar -xf diffutils-*.tar.xz -C /tmp/ \
   && mv /tmp/diffutils-* /tmp/diffutils \
-  && pushd /tmp/diffutils \
-  && ./configure --prefix=/tools \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \
-  && make install \
-  && popd \
+  && pushd /tmp/diffutils
+
+./configure --prefix=/tools
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+make install
+
+popd \
   && rm -rf /tmp/diffutils

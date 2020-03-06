@@ -11,10 +11,15 @@ echo "Required disk space: 16 MB"
 
 tar -xf make-*.tar.bz2 -C /tmp/ \
   && mv /tmp/make-* /tmp/make \
-  && pushd /tmp/make \
-  && ./configure --prefix=/tools --without-guile \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \ 
-  && make install \ 
-  && popd \
+  && pushd /tmp/make
+
+./configure --prefix=/tools --without-guile
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+make install 
+
+popd \
   && rm -rf /tmp/make

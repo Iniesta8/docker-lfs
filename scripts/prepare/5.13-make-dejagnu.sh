@@ -11,9 +11,13 @@ echo "Required disk space: 3.2 MB"
 
 tar -xf dejagnu-*.tar.gz -C /tmp/ \
   && mv /tmp/dejagnu-* /tmp/dejagnu \
-  && pushd /tmp/dejagnu \
-  && ./configure --prefix=/tools \
-  && make install \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \
-  && popd \
+  && pushd /tmp/dejagnu
+
+./configure --prefix=/tools
+
+make install
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+popd \
   && rm -rf /tmp/dejagnu

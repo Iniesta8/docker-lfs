@@ -14,10 +14,15 @@ echo "Required disk space: 18 MB"
 
 tar -xf xz-*.tar.xz -C /tmp/ \
   && mv /tmp/xz-* /tmp/xz \
-  && pushd /tmp/xz \
-  && ./configure --prefix=/tools \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \
-  && make install \
-  && popd \
+  && pushd /tmp/xz
+
+./configure --prefix=/tools
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+make install
+
+popd \
   && rm -rf /tmp/xz

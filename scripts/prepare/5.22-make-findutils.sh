@@ -15,10 +15,15 @@ echo "Required disk space: 39 MB"
 
 tar -xf findutils-*.tar.gz -C /tmp/ \
   && mv /tmp/findutils-* /tmp/findutils \
-  && pushd /tmp/findutils \
-  && ./configure --prefix=/tools \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \
-  && make install \
-  && popd \
+  && pushd /tmp/findutils
+
+./configure --prefix=/tools
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+make install
+
+popd \
   && rm -rf /tmp/findutils || true

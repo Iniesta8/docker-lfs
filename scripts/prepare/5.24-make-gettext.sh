@@ -14,10 +14,14 @@ echo "Required disk space: 300 MB"
 
 tar -xf gettext-*.tar.xz -C /tmp/ \
   && mv /tmp/gettext-* /tmp/gettext \
-  && pushd /tmp/gettext \
-  && cd gettext-tools \
-  && ./configure --disable-shared \
-  && make \
-  && cp -v src/{msgfmt,msgmerge,xgettext} /tools/bin \
-  && popd \
+  && pushd /tmp/gettext
+
+cd gettext-tools
+./configure --disable-shared
+
+make
+
+cp -v src/{msgfmt,msgmerge,xgettext} /tools/bin
+
+popd \
   && rm -rf /tmp/gettext

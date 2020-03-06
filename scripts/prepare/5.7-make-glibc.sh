@@ -16,18 +16,22 @@ echo "Required disk space: 896 MB"
 
 tar -xf glibc-*.tar.xz -C /tmp/ \
   && mv /tmp/glibc-* /tmp/glibc \
-  && pushd /tmp/glibc \
-  && mkdir -v build \
-  && cd build \
-  && ../configure                      \
-    --prefix=/tools                    \
-    --host=$LFS_TGT                    \
-    --build=$(../scripts/config.guess) \
-    --enable-kernel=3.2                \
-    --with-headers=/tools/include
-  && make \
-  && make install \
-  && popd \
+  && pushd /tmp/glibc
+
+mkdir -v build \
+  && cd build
+
+../configure                         \
+  --prefix=/tools                    \
+  --host=$LFS_TGT                    \
+  --build=$(../scripts/config.guess) \
+  --enable-kernel=3.2                \
+  --with-headers=/tools/include
+
+make
+make install
+
+popd \
   && rm -rf /tmp/glibc
 
 # Perform a sanity check that basic functions (compiling and linking)

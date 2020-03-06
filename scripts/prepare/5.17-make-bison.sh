@@ -11,10 +11,15 @@ echo "Required disk space: 43 MB"
 
 tar -xf bison-*.tar.xz -C /tmp/ \
   && mv /tmp/bison-* /tmp/bison \
-  && pushd /tmp/bison \
-  && ./configure --prefix=/tools \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \
-  && make install \
-  && popd \
+  && pushd /tmp/bison
+
+./configure --prefix=/tools
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+make install
+
+popd \
   && rm -rf /tmp/bison

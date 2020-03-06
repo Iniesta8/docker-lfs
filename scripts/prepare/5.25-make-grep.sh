@@ -11,10 +11,15 @@ echo "Required disk space: 25 MB"
 
 tar -xf grep-*.tar.xz -C /tmp/ \
   && mv /tmp/grep-* /tmp/grep \
-  && pushd /tmp/grep \
-  && ./configure --prefix=/tools \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \
-  && make install \
-  && popd \
+  && pushd /tmp/grep
+
+./configure --prefix=/tools
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+make install
+
+popd \
   && rm -rf /tmp/grep

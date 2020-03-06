@@ -12,10 +12,15 @@ echo "Required disk space: 104 MB"
 
 tar -xf texinfo-*.tar.xz -C /tmp/ \
   && mv /tmp/texinfo-* /tmp/texinfo \
-  && pushd /tmp/texinfo \
-  && ./configure --prefix=/tools \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \
-  && make install \
-  && popd \
+  && pushd /tmp/texinfo
+
+./configure --prefix=/tools
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+make install
+
+popd \
   && rm -rf /tmp/texinfo

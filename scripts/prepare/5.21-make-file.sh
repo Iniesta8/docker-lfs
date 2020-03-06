@@ -12,10 +12,15 @@ echo "Required disk space: 20 MB"
 
 tar -xf file-*.tar.gz -C /tmp/ \
   && mv /tmp/file-* /tmp/file \
-  && pushd /tmp/file \
-  && ./configure --prefix=/tools \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \
-  && make install \
-  && popd \
+  && pushd /tmp/file
+
+./configure --prefix=/tools
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+make install
+
+popd \
   && rm -rf /tmp/file

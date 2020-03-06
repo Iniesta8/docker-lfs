@@ -12,17 +12,21 @@ echo "Required disk space: 41 MB"
 
 tar -xf ncurses-*.tar.gz -C /tmp/ \
   && mv /tmp/ncurses-* /tmp/ncurses \
-  && pushd /tmp/ncurses \
-  && sed -i s/mawk// configure \
-  && ./configure          \
-      --prefix=/tools    \
-      --with-shared      \
-      --without-debug    \
-      --without-ada      \
-      --enable-widec     \
-      --enable-overwrite \
-  && make \
-  && make install \
-  && ln -s libncursesw.so /tools/lib/libncurses.so \
-  && popd \
+  && pushd /tmp/ncurses
+
+sed -i s/mawk// configure
+
+./configure --prefix=/tools \
+            --with-shared   \
+            --without-debug \
+            --without-ada   \
+            --enable-widec  \
+            --enable-overwrite
+
+make
+
+make install
+ln -s libncursesw.so /tools/lib/libncurses.so
+
+popd \
   && rm -rf /tmp/ncurses

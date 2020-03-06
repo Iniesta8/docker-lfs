@@ -11,14 +11,22 @@ echo "Required disk space: 72 MB"
 
 tar -xf tcl*-src.tar.gz -C /tmp/ \
   && mv /tmp/tcl* /tmp/tcl \
-  && pushd /tmp/tcl \
-  && cd unix \
-  && ./configure --prefix=/tools \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then TZ=UTC make test; fi \
-  && make install \
-  && chmod -v u+w /tools/lib/libtcl8.6.so \
-  && make install-private-headers \
-  && ln -sv tclsh8.6 /tools/bin/tclsh \
-  && popd \
+  && pushd /tmp/tcl
+
+cd unix \
+  && ./configure --prefix=/tools
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then TZ=UTC make test; fi
+
+make install
+
+chmod -v u+w /tools/lib/libtcl8.6.so
+
+make install-private-headers
+
+ln -sv tclsh8.6 /tools/bin/tclsh
+
+popd \
   && rm -rf /tmp/tcl-core

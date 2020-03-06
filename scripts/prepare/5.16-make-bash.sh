@@ -12,11 +12,17 @@ echo "Required disk space: 67 MB"
 # 5.16. Bash package contains the Bourne-Again SHell
 tar -xf bash-*.tar.gz -C /tmp/ \
   && mv /tmp/bash-* /tmp/bash \
-  && pushd /tmp/bash \
-  && ./configure --prefix=/tools --without-bash-malloc \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make tests; fi \
-  && make install \
-  && ln -sv bash /tools/bin/sh \
-  && popd \
+  && pushd /tmp/bash
+
+./configure --prefix=/tools --without-bash-malloc
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make tests; fi
+
+make install
+
+ln -sv bash /tools/bin/sh
+
+popd \
   && rm -rf /tmp/bash

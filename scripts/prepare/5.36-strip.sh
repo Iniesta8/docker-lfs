@@ -4,7 +4,7 @@
 
 set -e
 
-echo "Stripping.."
+echo "Stripping..."
 
 # The steps in this section are optional, but if the LFS partition is rather
 # small, it is beneficial to learn that unnecessary items can be removed.

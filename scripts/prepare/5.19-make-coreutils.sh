@@ -12,10 +12,15 @@ echo "Required disk space: 157 MB"
 
 tar -xf coreutils-*.tar.xz -C /tmp/ \
   && mv /tmp/coreutils-* /tmp/coreutils \
-  && pushd /tmp/coreutils \
-  && ./configure --prefix=/tools --enable-install-program=hostname \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make RUN_EXPENSIVE_TESTS=yes check || true; fi \
-  && make install \
-  && popd \
+  && pushd /tmp/coreutils
+
+./configure --prefix=/tools --enable-install-program=hostname
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make RUN_EXPENSIVE_TESTS=yes check || true; fi
+
+make install
+
+popd \
   && rm -rf /tmp/coreutils

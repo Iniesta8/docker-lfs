@@ -11,10 +11,15 @@ echo "Required disk space: 10 MB"
 
 tar -xf gzip-*.tar.xz -C /tmp/ \
   && mv /tmp/gzip-* /tmp/gzip \
-  && pushd /tmp/gzip \
-  && ./configure --prefix=/tools \
-  && make \
-  && if [ $LFS_TEST -eq 1 ]; then make check; fi \
-  && make install \
-  && popd \
+  && pushd /tmp/gzip
+
+./configure --prefix=/tools
+
+make
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+make install
+
+popd \
   && rm -rf /tmp/gzip
