@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.11. Tcl-8.6.10
 # The Tcl package contains the Tool Command Language. 
-
-set -e
 
 echo "Building Tcl..."
 echo "Approximate build time: 0.9 SBU"
@@ -16,7 +15,7 @@ tar -xf tcl*-src.tar.gz -C /tmp/ \
 cd unix \
   && ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then TZ=UTC make test; fi
 

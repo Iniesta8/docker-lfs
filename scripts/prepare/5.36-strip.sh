@@ -1,8 +1,7 @@
 #!/bin/bash
+set -e
 
 # 5.36. Stripping
-
-set -e
 
 echo "Stripping..."
 

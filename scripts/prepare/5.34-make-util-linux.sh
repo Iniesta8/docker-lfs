@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.34. Util-linux-2.35.1
 # The Util-linux package contains miscellaneous utility programs.
-
-set -e
 
 echo "Building util-linux..."
 echo "Approximate build time: 0.9 SBU"
@@ -19,7 +18,8 @@ tar -xf util-linux-*.tar.xz -C /tmp/ \
             --without-systemdsystemunitdir \
             --without-ncurses              \
             PKG_CONFIG=""
-make
+
+make -j$JOB_COUNT
 make install
 
 popd \

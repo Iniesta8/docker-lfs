@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.33. Texinfo-6.7
 #  The Texinfo package contains programs for reading, writing, and
 # converting info pages.
-
-set -e
 
 echo "Building texinfo..."
 echo "Approximate build time: 0.2 SBU"
@@ -16,7 +15,7 @@ tar -xf texinfo-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

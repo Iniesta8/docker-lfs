@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.5. GCC-9.2.0 - Pass 1
 # The GCC package contains the GNU compiler collection,
 # which includes the C and C++ compilers. 
-
-set -e
 
 echo "Building gcc..."
 echo "Approximate build time: 10 SBU"
@@ -63,7 +62,7 @@ mkdir -v build \
   --disable-libstdcxx                            \
   --enable-languages=c,c++
 
-make
+make -j$JOB_COUNT
 make install
 
 popd \

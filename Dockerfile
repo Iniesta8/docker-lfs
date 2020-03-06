@@ -119,4 +119,4 @@ USER lfs
 # RUN source ~/.bash_profile
 
 # Go!
-ENTRYPOINT [ "/tools/run-all.sh" ]
+#ENTRYPOINT [ "/tools/run-all.sh" ]

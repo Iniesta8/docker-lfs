@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.9. Binutils-2.34 - Pass 2
 # The Binutils package contains a linker, an assembler,
 # and other tools for handling object files. 
-
-set -e
 
 echo "Building binutils..."
 echo "Approximate build time: 1.1 SBU"
@@ -27,7 +26,7 @@ RANLIB=$LFS_TGT-ranlib       \
   --with-lib-path=/tools/lib \
   --with-sysroot
 
-make
+make -j$JOB_COUNT
 make install
 
 make -C ld clean

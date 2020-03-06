@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.21. File-5.38
 # The File package contains a utility for determining the type
 # of a given file or files.
-
-set -e
 
 echo "Building file..."
 echo "Approximate build time: 0.1 SBU"
@@ -16,7 +15,7 @@ tar -xf file-*.tar.gz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

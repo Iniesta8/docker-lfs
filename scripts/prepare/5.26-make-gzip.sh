@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.26. Gzip-1.10
 # The Gzip package contains programs for compressing and decompressing files.
-
-set -e
 
 echo "Building gzip.."
 echo "Approximate build time: 0.1 SBU"
@@ -15,7 +14,7 @@ tar -xf gzip-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

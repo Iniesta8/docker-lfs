@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.6. Linux-5.5.3 API Headers
 # The Linux API Headers (in linux-5.5.3.tar.xz) expose
 # the kernel's API for use by Glibc. 
-
-set -e
 
 echo "Building Linux API Headers..."
 echo "Approximate build time: 0.1 SBU"
@@ -15,9 +14,9 @@ tar -xf linux-*.tar.xz -C /tmp/ \
   && pushd /tmp/linux
 
 make mrproper
-make headers
+make -j$JOB_COUNT headers
 
-cp -rv dest/include/* /tools/include
+cp -rv usr/include/* /tools/include
 
 popd \
   && rm -rf /tmp/linux

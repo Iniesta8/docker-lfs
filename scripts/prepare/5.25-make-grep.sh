@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.25. Grep-3.4
 # The Grep package contains programs for searching through files.
-
-set -e
 
 echo "Building grep..."
 echo "Approximate build time: 0.2 SBU"
@@ -15,7 +14,7 @@ tar -xf grep-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

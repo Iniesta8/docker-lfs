@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # 5.22. Findutils-4.7.0
 # The Findutils package contains programs to find files.
@@ -6,8 +7,6 @@
 # tree and to create, maintain, and search a database (often faster than
 # the recursive find, but unreliable if the database has not been
 # recently updated). 
-
-set -e
 
 echo "Building findutils..."
 echo "Approximate build time: 0.3 SBU"
@@ -19,7 +18,7 @@ tar -xf findutils-*.tar.gz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

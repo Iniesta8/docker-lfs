@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.23. Gawk-5.0.1
 # The Gawk package contains programs for manipulating text files.
-
-set -e
 
 echo "Building gawk..."
 echo "Approximate build time: 0.2 SBU"
@@ -15,7 +14,7 @@ tar -xf gawk-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

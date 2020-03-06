@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.20. Diffutils-3.7
 # The Diffutils package contains programs that show the differences
 # between files or directories.
-
-set -e
 
 echo "Building diffutils..."
 echo "Approximate build time: 0.2 SBU"
@@ -16,7 +15,7 @@ tar -xf diffutils-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

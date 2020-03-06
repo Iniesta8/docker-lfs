@@ -1,12 +1,11 @@
 #!/bin/bash
+set -e
 
 # 5.8. Libstdc++ from GCC-9.2.0 
 # Libstdc++ is the standard C++ library.
 # It is needed to compile C++ code (part of GCC is written in C++),
 # but we had to defer its installation when we built gcc-pass1
 # because it depends on glibc, which was not yet available in /tools. 
-
-set -e
 
 echo "Building libstdc..."
 echo "Approximate build time: 0.5 SBU"
@@ -28,7 +27,7 @@ mkdir -v build \
   --disable-libstdcxx-pch         \
   --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/9.2.0
 
-make
+make -j$JOB_COUNT
 make install
 
 popd \

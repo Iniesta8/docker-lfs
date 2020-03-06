@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.28. Patch-2.7.6
 # The Patch package contains a program for modifying or creating files
 # by applying a “patch” file typically created by the diff program. 
-
-set -e
 
 echo "Building patch..."
 echo "Approximate build time: 0.2 SBU"
@@ -16,7 +15,7 @@ tar -xf patch-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

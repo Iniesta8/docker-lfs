@@ -1,12 +1,11 @@
 #!/bin/bash
+set -e
 
 # 5.24. Gettext-0.20.1
 # The Gettext package contains utilities for internationalization and
 # localization. These allow programs to be compiled with NLS
 # (Native Language Support), enabling them to output messages in the
 # user's native language.
-
-set -e
 
 echo "Building gettext..."
 echo "Approximate build time: 1.6 SBU"
@@ -19,7 +18,7 @@ tar -xf gettext-*.tar.xz -C /tmp/ \
 cd gettext-tools
 ./configure --disable-shared
 
-make
+make -j$JOB_COUNT
 
 cp -v src/{msgfmt,msgmerge,xgettext} /tools/bin
 

@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.15. Ncurses-6.2
 # The Ncurses package contains libraries for terminal-independent
 # handling of character screens. 
-
-set -e
 
 echo "Building Ncurses..."
 echo "Approximate build time:  0.6 SBU"
@@ -23,7 +22,7 @@ sed -i s/mawk// configure
             --enable-widec  \
             --enable-overwrite
 
-make
+make -j$JOB_COUNT
 
 make install
 ln -s libncursesw.so /tools/lib/libncurses.so

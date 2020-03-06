@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.31. Sed-4.8
 # The Sed package contains a stream editor.
-
-set -e
 
 echo "Building sed..."
 echo "Approximate build time: 0.2 SBU"
@@ -15,7 +14,7 @@ tar -xf sed-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

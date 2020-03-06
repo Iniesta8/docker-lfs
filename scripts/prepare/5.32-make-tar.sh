@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.32. Tar-1.32
 # The Tar package contains an archiving program.
-
-set -e
 
 echo "Building tar..."
 echo "Approximate build time: 0.3 SBU"
@@ -15,7 +14,7 @@ tar -xf tar-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

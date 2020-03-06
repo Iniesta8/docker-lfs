@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.19. Coreutils-8.31
 # The Coreutils package contains utilities for showing and setting
 # the basic system characteristics. 
-
-set -e
 
 echo "Building Coreutils..."
 echo "Approximate build time: 0.7 SBU"
@@ -16,7 +15,7 @@ tar -xf coreutils-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools --enable-install-program=hostname
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make RUN_EXPENSIVE_TESTS=yes check || true; fi
 

@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.10. GCC-9.2.0 - Pass 2
 # The GCC package contains the GNU compiler collection,
 # which includes the C and C++ compilers. 
-
-set -e
 
 echo "Building gcc..."
 echo "Approximate build time: 13 SBU"
@@ -54,7 +53,7 @@ RANLIB=$LFS_TGT-ranlib                           \
   --disable-bootstrap                            \
   --disable-libgomp
 
-make
+make -j$JOB_COUNT
 make install
 
 ln -sv gcc /tools/bin/cc

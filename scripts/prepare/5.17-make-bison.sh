@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.17. Bison-3.5.2
 # The Bison package contains a parser generator.
-
-set -e
 
 echo "Building bison..."
 echo "Approximate build time:  0.3 SBU"
@@ -15,7 +14,7 @@ tar -xf bison-*.tar.xz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

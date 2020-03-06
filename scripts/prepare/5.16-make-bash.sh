@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.16. Bash-5.0
 # The Bash package contains the Bourne-Again SHell.
-
-set -e
 
 echo "Building bash..."
 echo "Approximate build time:  0.4 SBU"
@@ -16,7 +15,7 @@ tar -xf bash-*.tar.gz -C /tmp/ \
 
 ./configure --prefix=/tools --without-bash-malloc
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make tests; fi
 

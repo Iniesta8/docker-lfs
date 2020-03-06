@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+
 echo "Downloading toolchain..."
 
 pushd $LFS/sources

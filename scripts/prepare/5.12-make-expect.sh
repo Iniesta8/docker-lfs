@@ -1,10 +1,9 @@
 #!/bin/bash
+set -e
 
 # 5.12. Expect-5.45.4
 # The Expect package contains a program for carrying out
 # scripted dialogues with other interactive programs.
-
-set -e
 
 echo "Building expect..."
 echo "Approximate build time: 0.1 SBU"
@@ -21,7 +20,7 @@ sed 's:/usr/local/bin:/bin:' configure.orig > configure
             --with-tcl=/tools/lib \
             --with-tclinclude=/tools/include
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make test; fi
 

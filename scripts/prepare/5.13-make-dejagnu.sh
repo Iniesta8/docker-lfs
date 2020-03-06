@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.13. DejaGNU-1.6.2
 # The DejaGNU package contains a framework for testing other programs.
-
-set -e
 
 echo "Building DejaGNU..."
 echo "Approximate build time: less than 0.1 SBU"
@@ -15,7 +14,7 @@ tar -xf dejagnu-*.tar.gz -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make install
+make -j$JOB_COUNT install
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

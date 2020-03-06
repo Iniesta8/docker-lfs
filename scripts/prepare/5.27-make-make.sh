@@ -1,9 +1,8 @@
 #!/bin/bash
+set -e
 
 # 5.27. Make-4.3
 # The Make package contains a program for compiling packages.
-
-set -e
 
 echo "Building make..."
 echo "Approximate build time: 0.1 SBU"
@@ -15,7 +14,7 @@ tar -xf make-*.tar.bz2 -C /tmp/ \
 
 ./configure --prefix=/tools --without-guile
 
-make
+make -j$JOB_COUNT
 
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # 5.7. Glibc-2.31
 # The Glibc package contains the main C library.
@@ -7,12 +8,9 @@
 # writing files, string handling, pattern matching, arithmetic,
 # and so on. 
 
-set -e
-
 echo "Building glibc..."
 echo "Approximate build time: 4.5 SBU"
 echo "Required disk space: 896 MB"
-
 
 tar -xf glibc-*.tar.xz -C /tmp/ \
   && mv /tmp/glibc-* /tmp/glibc \
@@ -28,7 +26,7 @@ mkdir -v build \
   --enable-kernel=3.2                \
   --with-headers=/tools/include
 
-make
+make -j$JOB_COUNT
 make install
 
 popd \
