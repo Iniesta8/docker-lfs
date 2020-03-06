@@ -1,22 +1,22 @@
 #!/bin/bash
 set -e
-echo "Downloading toolchain.."
+echo "Downloading toolchain..."
 
 pushd $LFS/sources
 
 case "$FETCH_TOOLCHAIN_MODE" in
   "0")
-    echo "Downloading LFS packages.."
-    echo "Getting wget-list.."
+    echo "Downloading LFS packages..."
+    echo "Getting wget-list..."
     wget --timestamping http://www.linuxfromscratch.org/lfs/view/9.1-systemd/wget-list
 
-    echo "Getting packages.."
+    echo "Getting packages..."
     wget --timestamping --continue --input-file=wget-list
 
-    echo "Getting md5.."
+    echo "Getting md5..."
     wget --timestamping http://www.linuxfromscratch.org/lfs/view/9.1-systemd/md5sums
 
-    echo "Check hashes.."
+    echo "Check hashes..."
     md5sum -c md5sums
     ;;
   "1")

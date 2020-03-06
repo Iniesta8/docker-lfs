@@ -3,7 +3,7 @@ set -e
 
 # 6.80. Cleaning Up
 
-echo "Cleaning up.."
+echo "Cleaning up..."
 
 # Clean up some extra files left around from running tests:
 rm -rf /tmp/*

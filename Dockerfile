@@ -1,4 +1,4 @@
-FROM debian:8
+FROM debian:latest
 
 # Image info
 LABEL description="Automated LFS build"
@@ -12,7 +12,7 @@ ENV LFS=/mnt/lfs
 ENV LC_ALL=POSIX
 ENV LFS_TGT=x86_64-lfs-linux-gnu
 ENV PATH=/tools/bin:/bin:/usr/bin:/sbin:/usr/sbin
-ENV MAKEFLAGS="-j"
+ENV MAKEFLAGS="-j 4"
 
 # Defines how toolchain is fetched
 # 0 - use LFS wget file
@@ -26,7 +26,7 @@ ENV LFS_TEST=0
 ENV LFS_DOCS=0
 
 # Degree of parallelism for compilation
-ENV JOB_COUNT=1
+ENV JOB_COUNT=4
 
 # Loop device
 ENV LOOP=/dev/loop0
@@ -57,6 +57,7 @@ RUN apt-get update && apt-get install -y \
        genisoimage                       \
        libelf-dev                        \
        bc                                \
+       python3                           \
        libssl-dev                        \
        && apt-get -q -y autoremove       \
        && rm -rf /var/lib/apt/lists/*
@@ -106,8 +107,8 @@ RUN echo 'Defaults env_keep += "LFS LC_ALL LFS_TGT PATH MAKEFLAGS FETCH_TOOLCHAI
 
 # Login as lfs user
 USER lfs
-COPY [ "config/.bash_profile", "config/.bashrc", "/home/lfs/" ]
-RUN source ~/.bash_profile
+# COPY [ "config/.bash_profile", "config/.bashrc", "/home/lfs/" ]
+# RUN source ~/.bash_profile
 
 # Go!
 ENTRYPOINT [ "/tools/run-all.sh" ]
