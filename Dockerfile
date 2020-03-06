@@ -1,6 +1,6 @@
 FROM debian:8
 
-# image info
+# Image info
 LABEL description="Automated LFS build"
 LABEL version="9.1-systemd"
 LABEL maintainer="andi.schnebinger@googlemail.com"
@@ -15,37 +15,37 @@ ENV PATH=/tools/bin:/bin:/usr/bin:/sbin:/usr/sbin
 ENV MAKEFLAGS="-j"
 
 # Defines how toolchain is fetched
-# 0 use LFS wget file
-# 1 use binaries from toolchain folder
+# 0 - use LFS wget file
+# 1 - use binaries from toolchain folder
 ENV FETCH_TOOLCHAIN_MODE=0
 
-# set 1 to run tests; running tests takes much more time
+# Set 1 to run tests; running tests takes much more time
 ENV LFS_TEST=0
 
-# set 1 to install documentation; slightly increases final size
+# Set 1 to install documentation; slightly increases final size
 ENV LFS_DOCS=0
 
-# degree of parallelism for compilation
+# Degree of parallelism for compilation
 ENV JOB_COUNT=1
 
-# loop device
+# Loop device
 ENV LOOP=/dev/loop0
 
-# inital ram disk size in KB
+# Inital ram disk size in KB
 # must be in sync with CONFIG_BLK_DEV_RAM_SIZE
 ENV IMAGE_SIZE=900000
 
-# location of initrd tree
+# Location of initrd tree
 ENV INITRD_TREE=/mnt/lfs
 
-# output image
+# Output image
 ENV IMAGE=isolinux/ramdisk.img
 
-# set bash as default shell
+# Set bash as default shell
 WORKDIR /bin
 RUN rm sh && ln -s bash sh
 
-# install required packages
+# Install required packages
 RUN apt-get update && apt-get install -y \
        build-essential                   \
        bison                             \
@@ -61,19 +61,19 @@ RUN apt-get update && apt-get install -y \
        && apt-get -q -y autoremove       \
        && rm -rf /var/lib/apt/lists/*
 
-# create sources directory as writable and sticky
+# Create sources directory as writable and sticky
 RUN mkdir -pv     $LFS/sources \
        && chmod -v a+wt $LFS/sources
 WORKDIR $LFS/sources
 
-# create tools directory and symlink
+# Create tools directory and symlink
 RUN mkdir -pv $LFS/tools \
        && ln -sv $LFS/tools /
 
-# copy local binaries if present
+# Copy local binaries if present
 COPY ["toolchain/", "$LFS/sources/"]
 
-# copy scripts
+# Copy scripts
 COPY [ "scripts/run-all.sh",       \
        "scripts/library-check.sh", \
        "scripts/version-check.sh", \
@@ -81,33 +81,33 @@ COPY [ "scripts/run-all.sh",       \
        "scripts/build/",           \
        "scripts/image/",           \
        "$LFS/tools/" ]
-# copy configuration
+# Copy configuration
 COPY [ "config/kernel.config", "$LFS/tools/" ]
 
-# check environment
+# Check environment
 RUN chmod +x $LFS/tools/*.sh          \
        && sync                        \
        && $LFS/tools/version-check.sh \
        && $LFS/tools/library-check.sh
 
-# create lfs user with 'lfs' password
+# Create lfs user with 'lfs' password
 RUN groupadd lfs                                          \
        && useradd -s /bin/bash -g lfs -m -k /dev/null lfs \
        && echo "lfs:lfs" | chpasswd
 RUN adduser lfs sudo
 
-# give lfs user ownership of directories
+# Give lfs user ownership of directories
 RUN chown -v lfs $LFS/tools \
        && chown -v lfs $LFS/sources
 
-# avoid sudo password
+# Avoid sudo password
 RUN echo "lfs ALL = NOPASSWD : ALL" >> /etc/sudoers
 RUN echo 'Defaults env_keep += "LFS LC_ALL LFS_TGT PATH MAKEFLAGS FETCH_TOOLCHAIN_MODE LFS_TEST LFS_DOCS JOB_COUNT LOOP IMAGE_SIZE INITRD_TREE IMAGE"' >> /etc/sudoers
 
-# login as lfs user
+# Login as lfs user
 USER lfs
 COPY [ "config/.bash_profile", "config/.bashrc", "/home/lfs/" ]
 RUN source ~/.bash_profile
 
-# let's the party begin
+# Go!
 ENTRYPOINT [ "/tools/run-all.sh" ]

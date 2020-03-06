@@ -1,8 +1,10 @@
 #!/bin/bash
-set -e
-echo "Running build.."
 
-# prepartion
+set -e
+
+echo "Running build..."
+
+# Prepartion
 sh /tools/6.2-prepare-vkfs.sh
 
 # enter and continue in chroot environment with tools

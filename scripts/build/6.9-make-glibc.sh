@@ -1,62 +1,82 @@
 #!/bin/bash
 set -e
-echo "Building glibc.."
-echo "Approximate build time: 20 SBU"
-echo "Required disk space: 2.0 Gb"
 
-# 6.9. Glibc package contains the main C library
+# 6.9. Glibc-2.31
+# The Glibc package contains the main C library.
+# This library provides the basic routines for allocating memory,
+# searching directories, opening and closing files, reading and
+# writing files, string handling, pattern matching, arithmetic,
+# and so on.
+
+echo "Building glibc..."
+echo "Approximate build time: 19 SBU"
+echo "Required disk space: 5.5 GB"
+
 tar -xf /sources/glibc-*.tar.xz -C /tmp/ \
  && mv /tmp/glibc-* /tmp/glibc \
  && pushd /tmp/glibc
 
-# 6.9.1. Installation of Glibc
-patch -Np1 -i /sources/glibc-2.27-fhs-1.patch
-ln -sfv /tools/lib/gcc /usr/lib
+# 6.9.1. Install Glibc
+patch -Np1 -i ../glibc-2.31-fhs-1.patch
 
-# Determine the GCC include directory and create a symlink for LSB
-# compliance. Additionally, for x86_64, create a compatibility
-# symlink required for the dynamic loader to function correctly:
+# Create a symlink for LSB compliance. Additionally, for x86_64, create a compatibility
+# symlink required for the dynamic loader to function correctly
 case $(uname -m) in
-    i?86)    GCC_INCDIR=/usr/lib/gcc/$(uname -m)-pc-linux-gnu/7.3.0/include
-            ln -sfv ld-linux.so.2 /lib/ld-lsb.so.3
-    ;;
-    x86_64) GCC_INCDIR=/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include
-            ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64
-            ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3
-    ;;
+  i?86)   ln -sfv ld-linux.so.2 /lib/ld-lsb.so.3
+  ;;
+  x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64
+          ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3
+  ;;
 esac
 
-# Remove a file that may be left over from a previous build attempt
-rm -f /usr/include/limits.h
-# The Glibc documentation recommends building Glibc in a dedicated
-# build directory:
-mkdir -v build
-cd build
-# prepare Glibc for compilation:
-CC="gcc -isystem $GCC_INCDIR -isystem /usr/include" \
+mkdir -v build \
+  && cd build
+
+# Prepare Glibc for compilation
+CC="gcc -ffile-prefix-map=/tools=/usr" \
 ../configure --prefix=/usr                          \
              --disable-werror                       \
              --enable-kernel=3.2                    \
              --enable-stack-protector=strong        \
+             --with-headers=/usr/include            \
              libc_cv_slibdir=/lib
-unset GCC_INCDIR
+
 make
-if [ $LFS_TEST -eq 1 ]; then make check || true; fi
-# prevent warning during install
+
+# The symbolic link is needed to run the tests at this stage of building
+# in the chroot environment. It will be overwritten in the install phase below. 
+case $(uname -m) in
+  i?86)   ln -sfnv $PWD/elf/ld-linux.so.2        /lib ;;
+  x86_64) ln -sfnv $PWD/elf/ld-linux-x86-64.so.2 /lib ;;
+esac
+
+if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+# Prevent warning during install
 touch /etc/ld.so.conf
-# fix the generated Makefile to skip an uneeded sanity check that fails in the LFS partial environment
+
+# Fix the generated Makefile to skip an uneeded sanity check that fails in the LFS partial environment
 sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
-# install the package
+
+# Install the package
 make install
-# install the configuration file and runtime directory for nscd
+
+# Install the configuration file and runtime directory for nscd
 cp -v ../nscd/nscd.conf /etc/nscd.conf
 mkdir -pv /var/cache/nscd
-# install the locales that can make the system respond in a different language
+
+# Install the systemd support files for nscd
+install -v -Dm644 ../nscd/nscd.tmpfiles /usr/lib/tmpfiles.d/nscd.conf
+install -v -Dm644 ../nscd/nscd.service /lib/systemd/system/nscd.service
+
+# Install the minimum set of locales necessary for the optimal coverage of tests
 mkdir -pv /usr/lib/locale
+localedef -i POSIX -f UTF-8 C.UTF-8 2> /dev/null || true
 localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8
 localedef -i de_DE -f ISO-8859-1 de_DE
 localedef -i de_DE@euro -f ISO-8859-15 de_DE@euro
 localedef -i de_DE -f UTF-8 de_DE.UTF-8
+localedef -i el_GR -f ISO-8859-7 el_GR
 localedef -i en_GB -f UTF-8 en_GB.UTF-8
 localedef -i en_HK -f ISO-8859-1 en_HK
 localedef -i en_PH -f ISO-8859-1 en_PH
@@ -70,17 +90,21 @@ localedef -i fr_FR -f UTF-8 fr_FR.UTF-8
 localedef -i it_IT -f ISO-8859-1 it_IT
 localedef -i it_IT -f UTF-8 it_IT.UTF-8
 localedef -i ja_JP -f EUC-JP ja_JP
+localedef -i ja_JP -f SHIFT_JIS ja_JP.SIJS 2> /dev/null || true
+localedef -i ja_JP -f UTF-8 ja_JP.UTF-8
 localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R
 localedef -i ru_RU -f UTF-8 ru_RU.UTF-8
 localedef -i tr_TR -f UTF-8 tr_TR.UTF-8
 localedef -i zh_CN -f GB18030 zh_CN.GB18030
-# cleanup
-popd
-rm -rf /tmp/glibc
+localedef -i zh_HK -f BIG5-HKSCS zh_HK.BIG5-HKSCS
+
+# Cleanup
+popd \
+  && rm -rf /tmp/glibc
 
 # 6.9.2. Configuring Glibc
 # 6.9.2.1. Adding nsswitch.conf
-cat > /etc/nsswitch.conf <<"EOF"
+cat > /etc/nsswitch.conf << "EOF"
 # Begin /etc/nsswitch.conf
 
 passwd: files
@@ -108,9 +132,9 @@ mkdir -pv $ZONEINFO/{posix,right}
 
 for tz in etcetera southamerica northamerica europe africa antarctica  \
           asia australasia backward pacificnew systemv; do
-    zic -L /dev/null   -d $ZONEINFO       -y "sh yearistype.sh" ${tz}
-    zic -L /dev/null   -d $ZONEINFO/posix -y "sh yearistype.sh" ${tz}
-    zic -L leapseconds -d $ZONEINFO/right -y "sh yearistype.sh" ${tz}
+    zic -L /dev/null   -d $ZONEINFO       ${tz}
+    zic -L /dev/null   -d $ZONEINFO/posix ${tz}
+    zic -L leapseconds -d $ZONEINFO/right ${tz}
 done
 
 cp -v zone.tab zone1970.tab iso3166.tab $ZONEINFO
@@ -120,17 +144,19 @@ unset ZONEINFO
 popd && \
   rm -rf /tmp/tzdata
 
-# set time zone info
+# Set time zone info:
 ln -sfv /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 # 6.9.2.3. Configuring the Dynamic Loader
-cat > /etc/ld.so.conf <<"EOF"
+cat > /etc/ld.so.conf << "EOF"
 # Begin /etc/ld.so.conf
 /usr/local/lib
 /opt/lib
+
 EOF
-cat >> /etc/ld.so.conf <<"EOF"
+cat >> /etc/ld.so.conf << "EOF"
 # Add an include directory
 include /etc/ld.so.conf.d/*.conf
+
 EOF
 mkdir -pv /etc/ld.so.conf.d

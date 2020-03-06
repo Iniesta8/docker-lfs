@@ -1,18 +1,24 @@
 #!/bin/bash
 set -e
-echo "Building Linux API headers.."
-echo "Approximate build time: less than 0.1 SBU"
-echo "Required disk space: 921 MB"
 
-# 6.7. Linux API Headers package exposes the kernel API for use by Glib
+# 6.7. Linux-5.5.3 API Headers
+# The Linux API Headers (in linux-5.5.3.tar.xz) expose the kernel's API for use by Glibc.
+
+echo "Building Linux API headers..."
+echo "Approximate build time: less than 0.1 SBU"
+echo "Required disk space: 1 GB"
+
+# 6.7.1. Install Linux API Headers
 tar -xf /sources/linux-*.tar.xz -C /tmp/ \
   && mv /tmp/linux-* /tmp/linux \
   && pushd /tmp/linux
 
 make mrproper
-make INSTALL_HDR_PATH=dest headers_install
-find dest/include \( -name .install -o -name ..install.cmd \) -delete
-cp -rv dest/include/* /usr/include
+
+make headers
+find usr/include -name '.*' -delete
+rm usr/include/Makefile
+cp -rv usr/include/* /usr/include
 
 popd \
   && rm -rf /tmp/linux

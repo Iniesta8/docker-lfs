@@ -1,17 +1,18 @@
 #!/bin/bash
 set -e
 
-# create essential files and symlinks
-ln -sv /tools/bin/{bash,cat,dd,echo,ln,pwd,rm,stty} /bin
-ln -sv /tools/bin/{install,perl} /usr/bin
-ln -sv /tools/lib/libgcc_s.so{,.1} /usr/lib
-ln -sv /tools/lib/libstdc++.{a,so{,.6}} /usr/lib
+# Create essential files and symlinks:
+ln -sv /tools/bin/{bash,cat,chmod,dd,echo,ln,mkdir,pwd,rm,stty,touch} /bin
+ln -sv /tools/bin/{env,install,perl,printf}         /usr/bin
+ln -sv /tools/lib/libgcc_s.so{,.1}                  /usr/lib
+ln -sv /tools/lib/libstdc++.{a,so{,.6}}             /usr/lib
+
 ln -sv bash /bin/sh
 
-# create symlink for list of the mounted file systems
+# Create symlink for list of mounted file systems:
 ln -sv /proc/self/mounts /etc/mtab
 
-# configure root
+# Create /etc/passwd and /etc/group:
 cat > /etc/passwd <<"EOF"
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/dev/null:/bin/false
@@ -50,6 +51,7 @@ messagebus:x:18:
 systemd-journal:x:23:
 input:x:24:
 mail:x:34:
+kvm:x:61:
 systemd-bus-proxy:x:72:
 systemd-journal-gateway:x:73:
 systemd-journal-remote:x:74:
@@ -58,12 +60,13 @@ systemd-network:x:76:
 systemd-resolve:x:77:
 systemd-timesync:x:78:
 systemd-coredump:x:79:
+wheel:x:97:
 nogroup:x:99:
 users:x:999:
 EOF
 
-# initialize the log files and give them proper permissions
+# Initialize the log files and give them proper permissions:
 touch /var/log/{btmp,lastlog,faillog,wtmp}
 chgrp -v utmp /var/log/lastlog
-chmod -v 664 /var/log/lastlog
-chmod -v 600 /var/log/btmp
+chmod -v 664  /var/log/lastlog
+chmod -v 600  /var/log/btmp

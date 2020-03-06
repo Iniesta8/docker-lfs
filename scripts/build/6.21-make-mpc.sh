@@ -1,12 +1,14 @@
 #!/bin/bash
 set -e
-echo "Building MPC.."
-echo "Approximate build time: 0.3 SBU"
-echo "Required disk space: 21 MB"
 
-# 6.19. The MPC package contains a library for the arithmetic of
-# complex numbers with arbitrarily high precision and correct
-# rounding of the result.
+# 6.21. MPC-1.1.0
+# The MPC package contains a library for the arithmetic of complex numbers
+# with arbitrarily high precision and correct rounding of the result. 
+
+echo "Building MPC..."
+echo "Approximate build time: 0.3 SBU"
+echo "Required disk space: 22 MB"
+
 tar -xf /sources/mpc-*.tar.gz -C /tmp/ \
   && mv /tmp/mpc-* /tmp/mpc \
   && pushd /tmp/mpc
@@ -20,7 +22,7 @@ tar -xf /sources/mpc-*.tar.gz -C /tmp/ \
 make
 make html
 
-# To test the results, issue:
+# Test the results:
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 
 # Install the package and its documentation:

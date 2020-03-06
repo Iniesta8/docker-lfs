@@ -1,11 +1,13 @@
 #!/bin/bash
+
 set -e
-echo "Continue with chroot environment.."
+
+echo "Continue with chroot environment..."
 
 # SKIP remove the "I have no name!" promp
 # exec /tools/bin/bash --login +h
 
-# build toolchain
+# Build toolchain
 sh /tools/6.5-create-directories.sh
 sh /tools/6.6-create-essentials.sh
 sh /tools/6.7-make-linux-api-headers.sh
@@ -38,7 +40,7 @@ sh /tools/6.33-make-grep.sh
 sh /tools/6.34-make-bash.sh
 
 # SKIP switching to built bash
-#exec /bin/bash --login +h
+# exec /bin/bash --login +h
 
 sh /tools/6.35-make-libtool.sh
 sh /tools/6.36-make-gdbm.sh
