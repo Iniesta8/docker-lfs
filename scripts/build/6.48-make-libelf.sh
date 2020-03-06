@@ -1,22 +1,30 @@
 #!/bin/bash
 set -e
-echo "Building Libelf.."
-echo "Approximate build time: 0.6 SBU"
-echo "Required disk space: 74 MB"
 
-# 6.48. Libelf is a library for handling ELF (Executable and Linkable
-# Format) files.
+# 6.48. Libelf from Elfutils-0.178
+# Libelf is a library for handling ELF (Executable and Linkable Format) files.
+
+echo "Building Libelf..."
+echo "Approximate build time: 0.9 SBU"
+echo "Required disk space: 124 MB"
+
 tar -xf /sources/elfutils-*.tar.bz2 -C /tmp/ \
   && mv /tmp/elfutils-* /tmp/elfutils \
   && pushd /tmp/elfutils
-# prepare for compilation
-./configure --prefix=/usr
-# compile, test and install
+
+# Prepare Libelf for compilation:
+./configure --prefix=/usr --disable-debuginfod
+
+# Compile the package:
 make
-# run tests
+
+# Test the results (One test, run-elfclassify.sh, is known to fail):
 if [ $LFS_TEST -eq 1 ]; then make check || true; fi
+
+# Install only Libelf:
 make -C libelf install
 install -vm644 config/libelf.pc /usr/lib/pkgconfig
-# cleanup
+rm /usr/lib/libelf.a
+
 popd \
   && rm -rf /tmp/elfutils

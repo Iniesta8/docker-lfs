@@ -1,10 +1,13 @@
 #!/bin/bash
 set -e
-echo "Building Sed.."
-echo "Approximate build time: 0.3 SBU"
-echo "Required disk space: 26 MB"
 
-# 6.27. Sed package contains a stream editor
+# 6.29. Sed-4.8
+# The Sed package contains a stream editor.
+
+echo "Building Sed.."
+echo "Approximate build time: 0.4 SBU"
+echo "Required disk space: 34 MB"
+
 tar -xf /sources/sed-*.tar.xz -C /tmp/ \
   && mv /tmp/sed-* /tmp/sed \
   && pushd /tmp/sed
@@ -20,16 +23,15 @@ sed -i 's/testsuite.panic-tests.sh//' Makefile.in
 make
 make html
 
-# To test the results, issue:
+# Test the results:
 if [ $LFS_TEST -eq 1 ]; then make check; fi
 
 # Install the package and its documentation:
 make install
 if [ $LFS_DOCS -eq 1 ]; then
-  install -d -m755           /usr/share/doc/sed-4.4
-  install -m644 doc/sed.html /usr/share/doc/sed-4.4
+  install -d -m755           /usr/share/doc/sed-4.8
+  install -m644 doc/sed.html /usr/share/doc/sed-4.8
 fi
 
-# Cleanup
 popd \
   && rm -rf /tmp/sed

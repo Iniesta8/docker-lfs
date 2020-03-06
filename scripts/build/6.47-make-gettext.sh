@@ -1,28 +1,33 @@
 #!/bin/bash
 set -e
-echo "Building gettext.."
-echo "Approximate build time: 2.4 SBU"
-echo "Required disk space: 201 MB"
 
-# 6.47. Gettext package contains utilities for internationalization and
-# localization. These allow programs to be compiled with NLS
-# (Native Language Support), enabling them to output messages in the
-# user's native language
+# 6.47. Gettext-0.20.1
+# The Gettext package contains utilities for internationalization and localization.
+# These allow programs to be compiled with NLS (Native Language Support), enabling
+# them to output messages in the user's native language.
+
+echo "Building gettext..."
+echo "Approximate build time: 2.7 SBU"
+echo "Required disk space: 249 MB"
+
 tar -xf /sources/gettext-*.tar.xz -C /tmp/ \
   && mv /tmp/gettext-* /tmp/gettext \
   && pushd /tmp/gettext
-# suppress two invocations of test-lock which on some machines can loop forever
-sed -i '/^TESTS =/d' gettext-runtime/tests/Makefile.in &&
-sed -i 's/test-lock..EXEEXT.//' gettext-tools/gnulib-tests/Makefile.in
-# prepare for compilation
-./configure --prefix=/usr \
-  --disable-static        \
-  --docdir=/usr/share/doc/gettext-0.19.8.1
-# compile, test, install
+
+# Prepare Gettext for compilation:
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/gettext-0.20.1
+
+# Compile the package:
 make
+
+# Test the results (this takes a long time, around 3 SBUs)
 if [ $LFS_TEST -eq 1 ]; then make check; fi
+
+# Install the package:
 make install
 chmod -v 0755 /usr/lib/preloadable_libintl.so
-# cleanup
+
 popd \
   && rm -rf /tmp/gettext
