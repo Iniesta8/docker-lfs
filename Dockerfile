@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM fedora:latest
 
 # Image info
 LABEL description="Automated LFS build"
@@ -17,7 +17,7 @@ ENV MAKEFLAGS="-j 4"
 # Defines how toolchain is fetched
 # 0 - use LFS wget file
 # 1 - use binaries from toolchain folder
-ENV FETCH_TOOLCHAIN_MODE=0
+ENV FETCH_TOOLCHAIN_MODE=1
 
 # Set 1 to run tests; running tests takes much more time
 ENV LFS_TEST=0
@@ -46,24 +46,32 @@ WORKDIR /bin
 RUN rm sh && ln -s bash sh
 
 # Install required packages
-RUN apt-get update && apt-get install -y \
-       build-essential                   \
-       bison                             \
-       file                              \
-       gawk                              \
-       texinfo                           \
-       wget                              \
-       sudo                              \
-       genisoimage                       \
-       libelf-dev                        \
-       bc                                \
-       python3                           \
-       libssl-dev                        \
-       && apt-get -q -y autoremove       \
-       && rm -rf /var/lib/apt/lists/*
+RUN dnf upgrade -y && dnf install -y \
+       make \
+       automake \
+       bison \
+       byacc \
+       bzip2 \
+       diffutils \
+       elfutils-libelf-devel \
+       findutils \
+       gcc \
+       gcc-c++ \
+       gmp-devel \
+       kernel-devel \
+       libmpc-devel \
+       mpfr-devel \
+       patch \
+       python3 \
+       texinfo \
+       wget \
+       which \
+       xz \
+       && dnf autoremove -y \
+       && rm -rf /etc/yum.repos.d/*
 
 # Create sources directory as writable and sticky
-RUN mkdir -pv     $LFS/sources \
+RUN mkdir -pv $LFS/sources \
        && chmod -v a+wt $LFS/sources
 WORKDIR $LFS/sources
 
@@ -87,7 +95,7 @@ COPY [ "config/kernel.config", "$LFS/tools/" ]
 
 # Check environment
 RUN chmod +x $LFS/tools/*.sh          \
-       && sync                        \
+       && sync                        \                        
        && $LFS/tools/version-check.sh \
        && $LFS/tools/library-check.sh
 
@@ -95,7 +103,7 @@ RUN chmod +x $LFS/tools/*.sh          \
 RUN groupadd lfs                                          \
        && useradd -s /bin/bash -g lfs -m -k /dev/null lfs \
        && echo "lfs:lfs" | chpasswd
-RUN adduser lfs sudo
+# RUN useradd lfs wheel
 
 # Give lfs user ownership of directories
 RUN chown -v lfs $LFS/tools \
