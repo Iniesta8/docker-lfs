@@ -11,7 +11,7 @@ echo "Approximate build time: 1.3 SBU"
 echo "Required disk space: 409 MB"
 
 tar -xf Python-3*.tar.xz -C /tmp/ \
-  && mv /tmp/python3-* /tmp/python3 \
+  && mv /tmp/Python-* /tmp/python3 \
   && pushd /tmp/python3
 
 sed -i '/def add_multiarch_paths/a \        return' setup.py

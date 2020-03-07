@@ -5,7 +5,7 @@ set -e
 # The GCC package contains the GNU compiler collection,
 # which includes the C and C++ compilers. 
 
-echo "Building gcc..."
+echo "Building gcc (pass 1)..."
 echo "Approximate build time: 10 SBU"
 echo "Required disk space: 3.1 GB"
 

@@ -15,12 +15,11 @@ tar -xf gettext-*.tar.xz -C /tmp/ \
   && mv /tmp/gettext-* /tmp/gettext \
   && pushd /tmp/gettext
 
-cd gettext-tools
 ./configure --disable-shared
 
 make -j$JOB_COUNT
 
-cp -v src/{msgfmt,msgmerge,xgettext} /tools/bin
+cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /tools/bin
 
 popd \
   && rm -rf /tmp/gettext

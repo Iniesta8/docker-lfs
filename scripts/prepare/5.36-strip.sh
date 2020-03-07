@@ -13,7 +13,7 @@ strip --strip-debug /tools/lib/* || true
 /usr/bin/strip --strip-unneeded /tools/{,s}bin/* || true
 
 # To save more, remove the documentation:
-rm -rf /tools/{,share}/{info,man,doc}
+rm -rf /tools/{,share}/{info,man,doc} || true
 
 # Remove unneeded files:
-find /tools/{lib,libexec} -name \*.la -delete
+find /tools/{lib,libexec} -name \*.la -delete || true
