@@ -13,7 +13,7 @@ tar -xf /sources/bash-*.tar.gz -C /tmp/ \
   && pushd /tmp/bash
 
 # Incorporate some upstream fixes:
-patch -Np1 -i ../bash-5.0-upstream_fixes-1.patch
+patch -Np1 -i /sources/bash-5.0-upstream_fixes-1.patch
 
 # Prepare Bash for compilation:
 ./configure --prefix=/usr                    \

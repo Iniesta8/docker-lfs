@@ -17,7 +17,7 @@ tar -xf /sources/glibc-*.tar.xz -C /tmp/ \
  && pushd /tmp/glibc
 
 # 6.9.1. Install Glibc
-patch -Np1 -i ../glibc-2.31-fhs-1.patch
+patch -Np1 -i /sources/glibc-2.31-fhs-1.patch
 
 # Create a symlink for LSB compliance. Additionally, for x86_64, create a compatibility
 # symlink required for the dynamic loader to function correctly

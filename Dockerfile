@@ -103,7 +103,7 @@ RUN chmod +x $LFS/tools/*.sh          \
 RUN groupadd lfs                                          \
        && useradd -s /bin/bash -g lfs -m -k /dev/null lfs \
        && echo "lfs:lfs" | chpasswd
-# RUN useradd lfs wheel
+RUN usermod -a -G root lfs
 
 # Give lfs user ownership of directories
 RUN chown -v lfs $LFS/tools \
@@ -115,9 +115,9 @@ RUN echo 'Defaults env_keep += "LFS LC_ALL LFS_TGT PATH MAKEFLAGS FETCH_TOOLCHAI
 
 # Login as lfs user
 USER lfs
-# COPY [ "config/.bash_profile", "config/.bashrc", "/home/lfs/" ]
-# RUN source ~/.bash_profile
+COPY [ "config/.bash_profile", "config/.bashrc", "/home/lfs/" ]
+RUN source ~/.bash_profile
 
 # Go!
-# ENTRYPOINT [ "/tools/run-all.sh" ]
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/tools/run-all.sh" ]
+# ENTRYPOINT [ "/bin/bash" ]

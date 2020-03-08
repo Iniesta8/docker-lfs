@@ -13,7 +13,7 @@ tar -xf /sources/kbd-*.tar.xz -C /tmp/ \
   && pushd /tmp/kbd
 
 # Fixes an issue for i386 keymaps:
-patch -Np1 -i ../kbd-2.2.0-backspace-1.patch
+patch -Np1 -i /sources/kbd-2.2.0-backspace-1.patch
 
 # Remove the redundant resizecons program:
 sed -i 's/\(RESIZECONS_PROGS=\)yes/\1no/g' configure

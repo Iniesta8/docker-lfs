@@ -15,7 +15,7 @@ tar -xf /sources/bzip2-*.tar.gz -C /tmp/ \
   && pushd /tmp/bzip2
 
 # Apply a patch that will install the documentation for this package:
-patch -Np1 -i ../bzip2-1.0.8-install_docs-1.patch
+patch -Np1 -i /sources/bzip2-1.0.8-install_docs-1.patch
 
 # The following command ensures installation of symbolic links are relative
 sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
