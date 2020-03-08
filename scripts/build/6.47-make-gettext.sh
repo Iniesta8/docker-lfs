@@ -20,10 +20,10 @@ tar -xf /sources/gettext-*.tar.* -C /tmp/ \
             --docdir=/usr/share/doc/gettext-0.20.1
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results (this takes a long time, around 3 SBUs)
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install

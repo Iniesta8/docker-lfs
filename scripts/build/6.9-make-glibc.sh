@@ -46,11 +46,11 @@ make
 # The symbolic link is needed to run the tests at this stage of building
 # in the chroot environment. It will be overwritten in the install phase below. 
 case $(uname -m) in
-  i?86)   ln -sfnv $PWD/elf/ld-linux.so.2        /lib ;;
-  x86_64) ln -sfnv $PWD/elf/ld-linux-x86-64.so.2 /lib ;;
+  i?86)   ln -sfnv "$PWD"/elf/ld-linux.so.2        /lib ;;
+  x86_64) ln -sfnv "$PWD"/elf/ld-linux-x86-64.so.2 /lib ;;
 esac
 
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Prevent warning during install
 touch /etc/ld.so.conf
@@ -128,17 +128,17 @@ mkdir /tmp/tzdata \
   && pushd /tmp/tzdata
 
 ZONEINFO=/usr/share/zoneinfo
-mkdir -pv $ZONEINFO/{posix,right}
+mkdir -pv "$ZONEINFO"/{posix,right}
 
 for tz in etcetera southamerica northamerica europe africa antarctica  \
           asia australasia backward pacificnew systemv; do
-    zic -L /dev/null   -d $ZONEINFO       ${tz}
-    zic -L /dev/null   -d $ZONEINFO/posix ${tz}
-    zic -L leapseconds -d $ZONEINFO/right ${tz}
+    zic -L /dev/null   -d "$ZONEINFO"       ${tz}
+    zic -L /dev/null   -d "$ZONEINFO"/posix ${tz}
+    zic -L leapseconds -d "$ZONEINFO"/right ${tz}
 done
 
-cp -v zone.tab zone1970.tab iso3166.tab $ZONEINFO
-zic -d $ZONEINFO -p America/New_York
+cp -v zone.tab zone1970.tab iso3166.tab "$ZONEINFO"
+zic -d "$ZONEINFO" -p America/New_York
 unset ZONEINFO
 
 popd && \

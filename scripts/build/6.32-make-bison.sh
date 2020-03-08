@@ -16,7 +16,7 @@ tar -xf /sources/bison-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.5.2
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make install

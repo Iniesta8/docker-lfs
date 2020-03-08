@@ -16,10 +16,10 @@ tar -xf /sources/check-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr
 
 # Build the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package and fix a script:
 make docdir=/usr/share/doc/check-0.14.0 install &&

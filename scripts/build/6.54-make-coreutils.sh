@@ -27,7 +27,7 @@ FORCE_UNSAFE_CONFIGURE=1 ./configure \
             --enable-no-install-program=kill,uptime
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 echo "
 Coreutils tests skipped.

@@ -21,7 +21,7 @@ tar -xf /sources/kmod-*.tar.* -C /tmp/ \
             --with-zlib
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package, and create symlinks for compatibility with Module-Init-Tools
 # (the package that previously handled Linux kernel modules):

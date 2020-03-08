@@ -14,7 +14,7 @@ tar -xf /sources/iana-etc-*.tar.* -C /tmp/ \
 
 # The following command converts the raw data provided by IANA into the correct
 # formats for the /etc/protocols and /etc/services data files:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make install

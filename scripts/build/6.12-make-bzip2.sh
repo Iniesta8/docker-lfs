@@ -28,7 +28,7 @@ make -f Makefile-libbz2_so
 make clean
 
 # Compile and test the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the programs:
 make PREFIX=/usr install

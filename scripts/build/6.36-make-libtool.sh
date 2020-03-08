@@ -18,11 +18,11 @@ tar -xf /sources/libtool-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Five tests are known to fail in the LFS build environment due to a circular
 # dependency, but all tests pass if rechecked after automake is installed
-if [ $LFS_TEST -eq 1 ]; then make check TESTSUITEFLAGS=-j2 || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check TESTSUITEFLAGS=-j2 || true; fi
 
 # Install the package:
 make install

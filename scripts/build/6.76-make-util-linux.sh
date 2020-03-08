@@ -34,7 +34,7 @@ rm -vf /usr/include/{blkid,libmount,uuid}
             --without-python
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 echo "Util-linux test skipped due to warning."
 #if [ $LFS_TEST -eq 1 ]; then

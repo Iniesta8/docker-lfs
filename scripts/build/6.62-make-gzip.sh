@@ -16,10 +16,10 @@ tar -xf /sources/gzip-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results (Two tests are known to fail in the LFS environment: help-version and zmore):
-if [ $LFS_TEST -eq 1 ]; then make check || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check || true; fi
 
 # Install the package:
 make install

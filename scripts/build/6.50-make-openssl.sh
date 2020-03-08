@@ -22,17 +22,17 @@ tar -xf /sources/openssl-*.tar.* -C /tmp/ \
          zlib-dynamic
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results (One subtest in the test 20-test_enc.t is known to fail):
-if [ $LFS_TEST -eq 1 ]; then make test || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make test || true; fi
  
 # Install the package:
 sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
 make MANSUFFIX=ssl install
 
 # Install the documentation:
-if [ $LFS_DOCS -eq 1 ]; then
+if [ "$LFS_DOCS" -eq 1 ]; then
   mv -v /usr/share/doc/openssl /usr/share/doc/openssl-1.1.1d
   cp -vfr doc/* /usr/share/doc/openssl-1.1.1d
 fi

@@ -30,10 +30,10 @@ sh Configure -des -Dprefix=/usr                 \
                   -Dusethreads
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results (approximately 11 SBU):
-if [ $LFS_TEST -eq 1 ]; then make test; fi
+if [ "$LFS_TEST" -eq 1 ]; then make test; fi
 
 # Install the package and clean up:
 make install

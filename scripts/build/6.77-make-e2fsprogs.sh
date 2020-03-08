@@ -27,7 +27,7 @@ mkdir -v build \
              --disable-fsck
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 echo "e2fsprogs test skipped due to high memory attempt."
 # Test the results
@@ -43,7 +43,7 @@ gunzip -v /usr/share/info/libext2fs.info.gz
 install-info --dir-file=/usr/share/info/dir /usr/share/info/libext2fs.info
 
 # Create and install some additional documentation
-if [ $LFS_DOCS -eq 1 ]; then
+if [ "$LFS_DOCS" -eq 1 ]; then
   makeinfo -o      doc/com_err.info ../lib/et/com_err.texinfo
   install -v -m644 doc/com_err.info /usr/share/info
   install-info --dir-file=/usr/share/info/dir /usr/share/info/com_err.info

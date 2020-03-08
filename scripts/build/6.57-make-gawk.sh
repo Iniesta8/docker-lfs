@@ -19,16 +19,16 @@ sed -i 's/extras//' Makefile.in
 ./configure --prefix=/usr
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install
 
 # Install the documentation:
-if [ $LFS_DOCS -eq 1 ]; then
+if [ "$LFS_DOCS" -eq 1 ]; then
   mkdir -v /usr/share/doc/gawk-5.0.1
   cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-5.0.1
 fi

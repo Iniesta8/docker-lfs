@@ -19,10 +19,10 @@ tar -xf /sources/findutils-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr --localstatedir=/var/lib/locate
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install

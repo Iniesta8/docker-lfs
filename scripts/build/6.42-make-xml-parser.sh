@@ -16,10 +16,10 @@ tar -xf /sources/XML-Parser-*.tar.* -C /tmp/ \
 perl Makefile.PL
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make test; fi
+if [ "$LFS_TEST" -eq 1 ]; then make test; fi
 
 # Install the package:
 make install

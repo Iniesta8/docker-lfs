@@ -23,14 +23,14 @@ sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in
 PKG_CONFIG_PATH=/tools/lib/pkgconfig ./configure --prefix=/usr --disable-vlock
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install
 
-if [ $LFS_DOCS -eq 1 ]; then
+if [ "$LFS_DOCS" -eq 1 ]; then
   mkdir -v       /usr/share/doc/kbd-2.2.0
   cp -R -v docs/doc/* /usr/share/doc/kbd-2.2.0
 fi

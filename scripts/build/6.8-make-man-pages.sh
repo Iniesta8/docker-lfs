@@ -13,7 +13,7 @@ tar -xf /sources/man-pages-*.tar.* -C /tmp/ \
   && mv /tmp/man-pages-* /tmp/man-pages \
   && pushd /tmp/man-pages
 
-make install
+make -j"$JOB_COUNT" install
 
 popd \
   && rm -rf /tmp/man-pages

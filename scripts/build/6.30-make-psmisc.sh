@@ -16,7 +16,7 @@ tar -xf /sources/psmisc-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make install

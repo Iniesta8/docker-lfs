@@ -34,10 +34,10 @@ mkdir -v build \
              --with-system-zlib
 
 # Compile the package:
-make tooldir=/usr
+make -j"$JOB_COUNT" tooldir=/usr
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make -k check || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make -k check || true; fi
 
 # Install the package:
 make tooldir=/usr install

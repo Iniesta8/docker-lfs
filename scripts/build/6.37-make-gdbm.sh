@@ -21,10 +21,10 @@ tar -xf /sources/gdbm-*.tar.* -C /tmp/ \
             --enable-libgdbm-compat
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install

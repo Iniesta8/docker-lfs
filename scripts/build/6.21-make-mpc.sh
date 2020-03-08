@@ -19,15 +19,15 @@ tar -xf /sources/mpc-*.tar.* -C /tmp/ \
             --docdir=/usr/share/doc/mpc-1.1.0
 
 # Compile the package and generate the HTML documentation:
-make
+make -j"$JOB_COUNT"
 make html
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package and its documentation:
 make install
-if [ $LFS_DOCS -eq 1 ]; then make install-html; fi
+if [ "$LFS_DOCS" -eq 1 ]; then make install-html; fi
 
 popd \
   && rm -rf /tmp/mpc

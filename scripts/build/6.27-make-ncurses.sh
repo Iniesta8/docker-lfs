@@ -26,7 +26,7 @@ sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in
             --enable-widec
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make install
@@ -37,7 +37,7 @@ mv -v /usr/lib/libncursesw.so.6* /lib
 
 # Because the libraries have been moved, one symlink points to a
 # non-existent file. Recreate it:
-ln -sfv ../../lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so
+ln -sfv ../../lib/"$(readlink /usr/lib/libncursesw.so)" /usr/lib/libncursesw.so
 
 # Many applications still expect the linker to be able to find
 # non-wide-character Ncurses libraries. Trick such applications
@@ -56,7 +56,7 @@ echo "INPUT(-lncursesw)" > /usr/lib/libcursesw.so
 ln -sfv libncurses.so      /usr/lib/libcurses.so
 
 # Install the Ncurses documentation:
-if [ $LFS_DOCS -eq 1 ]; then
+if [ "$LFS_DOCS" -eq 1 ]; then
   mkdir -v       /usr/share/doc/ncurses-6.2
   cp -v -R doc/* /usr/share/doc/ncurses-6.2
 fi

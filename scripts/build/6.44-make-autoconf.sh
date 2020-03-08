@@ -20,10 +20,10 @@ sed '361 s/{/\\{/' -i bin/autoscan.in
 ./configure --prefix=/usr
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # The test suite is currently broken by bash-5 and libtool-2.4.3. Run the tests anyway:
-if [ $LFS_TEST -eq 1 ]; then make check || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check || true; fi
 
 # Install the package:
 make install

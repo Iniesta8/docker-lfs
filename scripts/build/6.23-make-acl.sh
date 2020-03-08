@@ -21,7 +21,7 @@ tar -xf /sources/acl-*.tar.* -C /tmp/ \
             --docdir=/usr/share/doc/acl-2.2.53
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make install
@@ -29,7 +29,7 @@ make install
 # The shared library needs to be moved to /lib, and as a result the
 # .so file in /usr/lib will need to be recreated:
 mv -v /usr/lib/libacl.so.* /lib
-ln -sfv ../../lib/$(readlink /usr/lib/libacl.so) /usr/lib/libacl.so
+ln -sfv ../../lib/"$(readlink /usr/lib/libacl.so)" /usr/lib/libacl.so
 
 popd \
   && rm -rf /tmp/acl

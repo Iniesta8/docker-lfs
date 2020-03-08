@@ -20,10 +20,10 @@ tar -xf /sources/pkg-config-*.tar.* -C /tmp/ \
             --docdir=/usr/share/doc/pkg-config-0.29.2
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install

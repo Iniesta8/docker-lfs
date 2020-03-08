@@ -16,15 +16,15 @@ tar -xf /sources/zlib-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install
 mv -v /usr/lib/libz.so.* /lib
-ln -sfv ../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so
+ln -sfv ../../lib/"$(readlink /usr/lib/libz.so)" /usr/lib/libz.so
 
 popd \
   && rm -rf /tmp/zlib

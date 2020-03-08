@@ -19,15 +19,15 @@ tar -xf /sources/mpfr-*.tar.* -C /tmp/ \
             --docdir=/usr/share/doc/mpfr-4.0.2
 
 # Compile the package and generate the HTML documentation:
-make
+make -j"$JOB_COUNT"
 make html
 
 # Test the results and ensure that all tests passed:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package and its documentation:
 make install
-if [ $LFS_DOCS -eq 1 ]; then make install-html; fi
+if [ "$LFS_DOCS" -eq 1 ]; then make install-html; fi
 
 popd \
   && rm -rf /tmp/mpfr

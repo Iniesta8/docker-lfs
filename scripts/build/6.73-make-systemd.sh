@@ -19,7 +19,7 @@ ln -sf /tools/bin/true /usr/bin/xsltproc
 # Because we have not yet installed the final version of Util-Linux,
 # create links to the libraries in the appropriate location:
 for file in /tools/lib/lib{blkid,mount,uuid}.so*; do
-  ln -sf $file /usr/lib/
+  ln -sf "$file" /usr/lib/
 done
 
 # Set up the man pages:

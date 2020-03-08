@@ -15,7 +15,7 @@ tar -xf /sources/zstd-*.tar.* -C /tmp/ \
   && pushd /tmp/zstd
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make prefix=/usr install
@@ -24,7 +24,7 @@ make prefix=/usr install
 # Also, the .so file in /usr/lib will need to be recreated:
 rm -v /usr/lib/libzstd.a
 mv -v /usr/lib/libzstd.so.* /lib
-ln -sfv ../../lib/$(readlink /usr/lib/libzstd.so) /usr/lib/libzstd.so
+ln -sfv ../../lib/"$(readlink /usr/lib/libzstd.so)" /usr/lib/libzstd.so
 
 popd \
   && rm -rf /tmp/zstd

@@ -24,7 +24,7 @@ sed -i '/int Guess/a \
 python3 configure.py --bootstrap
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then
+if [ "$LFS_TEST" -eq 1 ]; then
   ./ninja ninja_test
   ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots
 fi

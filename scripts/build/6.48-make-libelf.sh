@@ -16,10 +16,10 @@ tar -xf /sources/elfutils-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr --disable-debuginfod
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results (One test, run-elfclassify.sh, is known to fail):
-if [ $LFS_TEST -eq 1 ]; then make check || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check || true; fi
 
 # Install only Libelf:
 make -C libelf install

@@ -24,13 +24,13 @@ tar -xf /sources/inetutils-*.tar.* -C /tmp/ \
             --disable-servers
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
 # One test, libls.sh, may fail in the initial chroot environment but will pass
 # if the test is rerun after the LFS system is complete. One test, ping-localhost.sh,
 # will fail if the host system does not have ipv6 capability.
-if [ $LFS_TEST -eq 1 ]; then make check || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check || true; fi
 
 # Install the package:
 make install

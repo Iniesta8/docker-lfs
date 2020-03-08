@@ -16,10 +16,10 @@ tar -xf /sources/texinfo-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr --disable-static
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install
@@ -30,7 +30,7 @@ make TEXMF=/usr/share/texmf install-tex
 pushd /usr/share/info
 rm -v dir
 for f in *
-  do install-info $f dir 2>/dev/null
+  do install-info "$f" dir 2>/dev/null
 done
 popd
 

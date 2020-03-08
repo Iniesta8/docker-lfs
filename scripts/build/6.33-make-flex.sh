@@ -19,10 +19,10 @@ HELP2MAN=/tools/bin/true \
 ./configure --prefix=/usr --docdir=/usr/share/doc/flex-2.6.4
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results (about 0.5 SBU)
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install

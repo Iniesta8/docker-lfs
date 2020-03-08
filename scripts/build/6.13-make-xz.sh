@@ -21,16 +21,16 @@ tar -xf /sources/xz-*.tar.* -C /tmp/ \
             --docdir=/usr/share/doc/xz-5.2.4
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package and make sure that all essential files are in the correct directory:
 make install
 mv -v   /usr/bin/{lzma,unlzma,lzcat,xz,unxz,xzcat} /bin
 mv -v /usr/lib/liblzma.so.* /lib
-ln -svf ../../lib/$(readlink /usr/lib/liblzma.so) /usr/lib/liblzma.so
+ln -svf ../../lib/"$(readlink /usr/lib/liblzma.so)" /usr/lib/liblzma.so
 
 popd \
   && rm -rf /tmp/xz

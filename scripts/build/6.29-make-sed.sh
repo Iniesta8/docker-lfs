@@ -20,15 +20,15 @@ sed -i 's/testsuite.panic-tests.sh//' Makefile.in
 ./configure --prefix=/usr --bindir=/bin
 
 # Compile the package and generate the HTML documentation:
-make
+make -j"$JOB_COUNT"
 make html
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package and its documentation:
 make install
-if [ $LFS_DOCS -eq 1 ]; then
+if [ "$LFS_DOCS" -eq 1 ]; then
   install -d -m755           /usr/share/doc/sed-4.8
   install -m644 doc/sed.html /usr/share/doc/sed-4.8
 fi

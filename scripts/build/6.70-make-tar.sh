@@ -18,14 +18,14 @@ FORCE_UNSAFE_CONFIGURE=1  \
             --bindir=/bin
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results (about 3 SBUs):
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install
 make -C doc install-html docdir=/usr/share/doc/tar-1.32
 
 popd \
-  && rm -rf /tmp/tar || true
+  && (rm -rf /tmp/tar || true)

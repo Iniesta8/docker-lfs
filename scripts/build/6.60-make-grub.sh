@@ -20,7 +20,7 @@ tar -xf /sources/grub-*.tar.* -C /tmp/ \
             --disable-werror
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make install

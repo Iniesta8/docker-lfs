@@ -21,16 +21,16 @@ sed -i 's|usr/bin/env |bin/|' run.sh.in
             --docdir=/usr/share/doc/expat-2.2.9
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install
 
 # Install the documentation:
-if [ $LFS_DOCS -eq 1 ]; then
+if [ "$LFS_DOCS" -eq 1 ]; then
   install -v -m644 doc/*.{html,png,css} /usr/share/doc/expat-2.2.9
 fi
 

@@ -19,10 +19,10 @@ tar -xf /sources/libffi-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr --disable-static --with-gcc-arch=native
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results (Six tests, all related to test-callback.c, are known to fail):
-if [ $LFS_TEST -eq 1 ]; then make check || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check || true; fi
 
 # Install the package:
 make install

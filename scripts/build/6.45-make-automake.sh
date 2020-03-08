@@ -16,10 +16,10 @@ tar -xf /sources/automake-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr --docdir=/usr/share/doc/automake-1.16.1
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make -j4 check || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make -j4 check || true; fi
 
 # Install the package:
 make install

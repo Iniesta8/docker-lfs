@@ -16,7 +16,7 @@ tar -xf /sources/less-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr --sysconfdir=/etc
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make install

@@ -22,10 +22,10 @@ patch -Np1 -i /sources/bash-5.0-upstream_fixes-1.patch
             --with-installed-readline
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Run tests
-if [ $LFS_TEST -eq 1 ]; then
+if [ "$LFS_TEST" -eq 1 ]; then
   # To prepare the tests, ensure that the nobody user can write to the sources tree:
   chown -Rv nobody .
   # Now, run the tests as the nobody user:

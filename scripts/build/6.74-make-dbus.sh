@@ -30,7 +30,7 @@ tar -xf /sources/dbus-*.tar.* -C /tmp/ \
             --with-console-auth-dir=/run/console
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make install
@@ -38,7 +38,7 @@ make install
 # The shared library needs to be moved to /lib, and as a result the .so file
 # in /usr/lib will need to be recreated:
 mv -v /usr/lib/libdbus-1.so.* /lib
-ln -sfv ../../lib/$(readlink /usr/lib/libdbus-1.so) /usr/lib/libdbus-1.so
+ln -sfv ../../lib/"$(readlink /usr/lib/libdbus-1.so)" /usr/lib/libdbus-1.so
 
 # Create a symlink, so that D-Bus and systemd can use the same machine-id file:
 ln -sfv /etc/machine-id /var/lib/dbus

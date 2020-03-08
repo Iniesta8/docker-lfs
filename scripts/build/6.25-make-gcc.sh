@@ -40,14 +40,14 @@ SED=sed                               \
              --with-system-zlib
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # One set of tests in the GCC test suite is known to exhaust the stack,
 # so increase the stack size prior to running the tests:
 ulimit -s 32768
 
 # Test the results, but do not stop at errors:
-if [ $LFS_TEST -eq 1 ]; then
+if [ "$LFS_TEST" -eq 1 ]; then
    chown -Rv nobody . 
    su nobody -s /bin/bash -c "PATH=$PATH make -k check"
    # Receive a summary of the test suite results
@@ -56,7 +56,7 @@ fi
 
 # Install the package:
 make install
-rm -rf /usr/lib/gcc/$(gcc -dumpmachine)/9.2.0/include-fixed/bits/
+rm -rf /usr/lib/gcc/"$(gcc -dumpmachine)"/9.2.0/include-fixed/bits/
 
 # The GCC build directory is owned by nobody now and the ownership of the
 # installed header directory (and its content) will be incorrect. Change
@@ -74,7 +74,7 @@ ln -sv gcc /usr/bin/cc
 # Add a compatibility symlink to enable building programs with
 # Link Time Optimization (LTO):
 install -v -dm755 /usr/lib/bfd-plugins
-ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/9.2.0/liblto_plugin.so \
+ln -sfv ../../libexec/gcc/"$(gcc -dumpmachine)"/9.2.0/liblto_plugin.so \
         /usr/lib/bfd-plugins/
 
 # Now that our final toolchain is in place, it is important to again

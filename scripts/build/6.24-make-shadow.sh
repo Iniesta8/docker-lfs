@@ -35,7 +35,7 @@ sed -i 's/1000/999/' etc/useradd
 ./configure --sysconfdir=/etc --with-group-name-max-length=32
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Install the package:
 make install

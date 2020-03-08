@@ -18,10 +18,10 @@ tar -xf /sources/libcap-*.tar.* -C /tmp/ \
 sed -i '/install.*STA...LIBNAME/d' libcap/Makefile
 
 # Compile the package:
-make lib=lib
+make -j"$JOB_COUNT" lib=lib
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make test; fi
+if [ "$LFS_TEST" -eq 1 ]; then make test; fi
 
 # Install the package:
 make lib=lib install

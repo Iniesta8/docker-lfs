@@ -17,10 +17,10 @@ tar -xf /sources/libpipeline-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$JOB_COUNT" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install

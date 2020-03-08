@@ -16,10 +16,10 @@ tar -xf /sources/gperf-*.tar.* -C /tmp/ \
 ./configure --prefix=/usr --docdir=/usr/share/doc/gperf-3.1
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make -j1 check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make -j1 check; fi
 
 # Install the package:
 make install

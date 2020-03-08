@@ -22,10 +22,10 @@ tar -xf /sources/procps-ng-*.tar.* -C /tmp/ \
             --with-systemd
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then
+if [ "$LFS_TEST" -eq 1 ]; then
   sed -i -r 's|(pmap_initname)\\\$|\1|' testsuite/pmap.test/pmap.exp
   sed -i '/set tty/d' testsuite/pkill.test/pkill.exp
   rm testsuite/pgrep.test/pgrep.exp
@@ -35,7 +35,7 @@ fi
 # Install the package:
 make install
 mv -v /usr/lib/libprocps.so.* /lib
-ln -sfv ../../lib/$(readlink /usr/lib/libprocps.so) /usr/lib/libprocps.so
+ln -sfv ../../lib/"$(readlink /usr/lib/libprocps.so)" /usr/lib/libprocps.so
 
 popd \
   && rm -rf /tmp/procps-ng

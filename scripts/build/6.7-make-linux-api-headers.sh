@@ -13,9 +13,9 @@ tar -xf /sources/linux-*.tar.* -C /tmp/ \
   && mv /tmp/linux-* /tmp/linux \
   && pushd /tmp/linux
 
-make mrproper
+make -j"$JOB_COUNT" mrproper
 
-make headers
+make -j"$JOB_COUNT" headers
 find usr/include -name '.*' -delete
 rm usr/include/Makefile
 cp -rv usr/include/* /usr/include

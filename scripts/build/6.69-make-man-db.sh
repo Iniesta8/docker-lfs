@@ -25,13 +25,13 @@ sed -i '/find/s@/usr@@' init/systemd/man-db.service.in
             --with-grap=/usr/bin/grap
 
 # Compile the package:
-make
+make -j"$JOB_COUNT"
 
 # Test the results:
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 # Install the package:
 make install
 
 popd \
-  && rm -rf /tmp/man-db || true
+  && (rm -rf /tmp/man-db || true)
