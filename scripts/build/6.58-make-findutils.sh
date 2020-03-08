@@ -11,7 +11,7 @@ echo "Building findutils..."
 echo "Approximate build time: 0.7 SBU"
 echo "Required disk space: 57 MB"
 
-tar -xf /sources/findutils-*.tar.gz -C /tmp/ \
+tar -xf /sources/findutils-*.tar.* -C /tmp/ \
   && mv /tmp/findutils-* /tmp/findutils \
   && pushd /tmp/findutils
 

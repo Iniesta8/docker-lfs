@@ -10,7 +10,7 @@ echo "Building Libffi..."
 echo "Approximate build time: 1.9 SBU"
 echo "Required disk space: 10 MB"
 
-tar -xf /sources/libffi-*.tar.gz -C /tmp/ \
+tar -xf /sources/libffi-*.tar.* -C /tmp/ \
   && mv /tmp/libffi-* /tmp/libffi \
   && pushd /tmp/libffi
 

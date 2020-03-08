@@ -9,7 +9,7 @@ echo "Building GCC..."
 echo "Approximate build time: 88 SBU (with tests)"
 echo "Required disk space: 4.2 GB"
 
-tar -xf /sources/gcc-*.tar.xz -C /tmp/ \
+tar -xf /sources/gcc-*.tar.* -C /tmp/ \
   && mv /tmp/gcc-* /tmp/gcc \
   && pushd /tmp/gcc
 

@@ -9,7 +9,7 @@ echo "Building libpipeline..."
 echo "Approximate build time: 0.2 SBU"
 echo "Required disk space: 9.2 MB"
 
-tar -xf /sources/libpipeline-*.tar.gz -C /tmp/ \
+tar -xf /sources/libpipeline-*.tar.* -C /tmp/ \
   && mv /tmp/libpipeline-* /tmp/libpipeline \
   && pushd /tmp/libpipeline
 

@@ -8,7 +8,7 @@ echo "Building procps-ng..."
 echo "Approximate build time: 0.1 SBU"
 echo "Required disk space: 17 MB"
 
-tar -xf /sources/procps-ng-*.tar.xz -C /tmp/ \
+tar -xf /sources/procps-ng-*.tar.* -C /tmp/ \
   && mv /tmp/procps-ng-* /tmp/procps-ng \
   && pushd /tmp/procps-ng
 

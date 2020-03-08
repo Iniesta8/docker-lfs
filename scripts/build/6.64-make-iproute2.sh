@@ -8,7 +8,7 @@ echo "Building IPRoute2..."
 echo "Approximate build time: 0.2 SBU"
 echo "Required disk space: 14 MB"
 
-tar -xf /sources/iproute2-*.tar.xz -C /tmp/ \
+tar -xf /sources/iproute2-*.tar.* -C /tmp/ \
   && mv /tmp/iproute2-* /tmp/iproute2 \
   && pushd /tmp/iproute2
 

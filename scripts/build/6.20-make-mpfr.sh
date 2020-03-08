@@ -8,7 +8,7 @@ echo "Building MPFR..."
 echo "Approximate build time: 0.8 SBU"
 echo "Required disk space: 37 MB"
 
-tar -xf /sources/mpfr-*.tar.xz -C /tmp/ \
+tar -xf /sources/mpfr-*.tar.* -C /tmp/ \
   && mv /tmp/mpfr-* /tmp/mpfr \
   && pushd /tmp/mpfr
 

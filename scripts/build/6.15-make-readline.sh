@@ -9,7 +9,7 @@ echo "Building readline..."
 echo "Approximate build time: 0.1 SBU"
 echo "Required disk space: 15 MB"
 
-tar -xf /sources/readline-*.tar.gz -C /tmp/ \
+tar -xf /sources/readline-*.tar.* -C /tmp/ \
   && mv /tmp/readline-* /tmp/readline \
   && pushd /tmp/readline
 

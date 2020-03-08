@@ -9,7 +9,7 @@ echo "Building Meson..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 31 MB"
 
-tar -xf /sources/meson-*.tar.gz -C /tmp/ \
+tar -xf /sources/meson-*.tar.* -C /tmp/ \
   && mv /tmp/meson-* /tmp/meson \
   && pushd /tmp/meson
 

@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:31
 
 # Image info
 LABEL description="Automated LFS build"

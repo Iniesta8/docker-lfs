@@ -8,7 +8,7 @@ echo "Building DejaGNU..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 3.2 MB"
 
-tar -xf dejagnu-*.tar.gz -C /tmp/ \
+tar -xf dejagnu-*.tar.* -C /tmp/ \
   && mv /tmp/dejagnu-* /tmp/dejagnu \
   && pushd /tmp/dejagnu
 

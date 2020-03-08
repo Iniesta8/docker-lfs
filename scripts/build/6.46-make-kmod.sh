@@ -8,7 +8,7 @@ echo "Building kmod..."
 echo "Approximate build time: 0.1 SBU"
 echo "Required disk space: 13 MB"
 
-tar -xf /sources/kmod-*.tar.xz -C /tmp/ \
+tar -xf /sources/kmod-*.tar.* -C /tmp/ \
   && mv /tmp/kmod-* /tmp/kmod \
   && pushd /tmp/kmod
 

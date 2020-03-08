@@ -8,7 +8,7 @@ echo "Building kbd..."
 echo "Approximate build time: 0.1 SBU"
 echo "Required disk space: 36 MB"
 
-tar -xf /sources/kbd-*.tar.xz -C /tmp/ \
+tar -xf /sources/kbd-*.tar.* -C /tmp/ \
   && mv /tmp/kbd-* /tmp/kbd \
   && pushd /tmp/kbd
 

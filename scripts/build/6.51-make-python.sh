@@ -10,7 +10,7 @@ echo "Building Python..."
 echo "Approximate build time: 1.2 SBU"
 echo "Required disk space: 426 MB"
 
-tar -xf /sources/Python-*.tar.xz -C /tmp/ \
+tar -xf /sources/Python-*.tar.* -C /tmp/ \
   && mv /tmp/Python-* /tmp/python \
   && pushd /tmp/python
 
@@ -38,7 +38,7 @@ if [ $LFS_DOCS -eq 1 ]; then
       --no-same-owner       \
       --no-same-permissions \
       -C /usr/share/doc/python-3.8.1/html \
-      -xvf ../python-3.8.1-docs-html.tar.bz2
+      -xvf ../python-3.8.1-docs-html.tar.*
 fi
 
 popd \

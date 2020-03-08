@@ -8,7 +8,7 @@ echo "Building texinfo..."
 echo "Approximate build time: 0.7 SBU"
 echo "Required disk space: 116 MB"
 
-tar -xf /sources/texinfo-*.tar.xz -C /tmp/ \
+tar -xf /sources/texinfo-*.tar.* -C /tmp/ \
   && mv /tmp/texinfo-* /tmp/texinfo \
   && pushd /tmp/texinfo
 

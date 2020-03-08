@@ -9,7 +9,7 @@ echo "Building GMP..."
 echo "Approximate build time: 1.1 SBU"
 echo "Required disk space: 51 MB"
 
-tar -xf /sources/gmp-*.tar.xz -C /tmp/ \
+tar -xf /sources/gmp-*.tar.* -C /tmp/ \
   && mv /tmp/gmp-* /tmp/gmp \
   && pushd /tmp/gmp
 

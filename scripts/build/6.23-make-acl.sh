@@ -10,7 +10,7 @@ echo "Building Acl..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 6.4 MB"
 
-tar -xf /sources/acl-*.tar.gz -C /tmp/ \
+tar -xf /sources/acl-*.tar.* -C /tmp/ \
   && mv /tmp/acl-* /tmp/acl \
   && pushd /tmp/acl
 

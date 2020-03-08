@@ -10,7 +10,7 @@ echo "Building libtool..."
 echo "Approximate build time: 1.8 SBU"
 echo "Required disk space: 43 MB"
 
-tar -xf /sources/libtool-*.tar.xz -C /tmp/ \
+tar -xf /sources/libtool-*.tar.* -C /tmp/ \
   && mv /tmp/libtool-* /tmp/libtool \
   && pushd /tmp/libtool
 

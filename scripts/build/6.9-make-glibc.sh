@@ -12,7 +12,7 @@ echo "Building glibc..."
 echo "Approximate build time: 19 SBU"
 echo "Required disk space: 5.5 GB"
 
-tar -xf /sources/glibc-*.tar.xz -C /tmp/ \
+tar -xf /sources/glibc-*.tar.* -C /tmp/ \
  && mv /tmp/glibc-* /tmp/glibc \
  && pushd /tmp/glibc
 
@@ -124,7 +124,7 @@ EOF
 
 # 6.9.2.2. Adding time zone data
 mkdir /tmp/tzdata \
-  && tar -xf /sources/tzdata*.tar.gz -C /tmp/tzdata \
+  && tar -xf /sources/tzdata*.tar.* -C /tmp/tzdata \
   && pushd /tmp/tzdata
 
 ZONEINFO=/usr/share/zoneinfo

@@ -3,7 +3,7 @@ set -e
 echo "Configuring syslinux.."
 
 # extract syslinux
-tar -xf $LFS/sources/syslinux-*.tar.xz -C /tmp/
+tar -xf $LFS/sources/syslinux-*.tar.* -C /tmp/
 mv /tmp/syslinux-* /tmp/syslinux
 
 # copy needed syslinux binaries

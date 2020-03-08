@@ -8,7 +8,7 @@ echo "Building make..."
 echo "Approximate build time: 0.5 SBU"
 echo "Required disk space: 16 MB"
 
-tar -xf /sources/make-*.tar.bz2 -C /tmp/ \
+tar -xf /sources/make-*.tar.* -C /tmp/ \
   && mv /tmp/make-* /tmp/make \
   && pushd /tmp/make
 

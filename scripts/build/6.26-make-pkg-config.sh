@@ -9,7 +9,7 @@ echo "Building pkg config..."
 echo "Approximate build time: 0.3 SBU"
 echo "Required disk space: 30 MB"
 
-tar -xf /sources/pkg-config-*.tar.gz -C /tmp/ \
+tar -xf /sources/pkg-config-*.tar.* -C /tmp/ \
   && mv /tmp/pkg-config-* /tmp/pkg-config \
   && pushd /tmp/pkg-config
 

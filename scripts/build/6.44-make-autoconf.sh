@@ -9,7 +9,7 @@ echo "Building Autoconf..."
 echo "Approximate build time: less than 0.1 SBU (about 3.2 SBU with tests)"
 echo "Required disk space: 79 MB"
 
-tar -xf /sources/autoconf-*.tar.xz -C /tmp/ \
+tar -xf /sources/autoconf-*.tar.* -C /tmp/ \
   && mv /tmp/autoconf-* /tmp/autoconf \
   && pushd /tmp/autoconf
 

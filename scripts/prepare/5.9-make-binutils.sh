@@ -9,7 +9,7 @@ echo "Building binutils (pass 2)..."
 echo "Approximate build time: 1.1 SBU"
 echo "Required disk space: 651 MB"
 
-tar -xf binutils-*.tar.xz -C /tmp/ \
+tar -xf binutils-*.tar.* -C /tmp/ \
   && mv /tmp/binutils-* /tmp/binutils \
   && pushd /tmp/binutils
 

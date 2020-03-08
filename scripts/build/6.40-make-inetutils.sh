@@ -8,7 +8,7 @@ echo "Building Inetutils..."
 echo "Approximate build time: 0.3 SBU"
 echo "Required disk space: 29 MB"
 
-tar -xf /sources/inetutils-*.tar.xz -C /tmp/ \
+tar -xf /sources/inetutils-*.tar.* -C /tmp/ \
   && mv /tmp/inetutils-* /tmp/inetutils \
   && pushd /tmp/inetutils
 

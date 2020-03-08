@@ -9,7 +9,7 @@ echo "Building MPC..."
 echo "Approximate build time: 0.3 SBU"
 echo "Required disk space: 22 MB"
 
-tar -xf /sources/mpc-*.tar.gz -C /tmp/ \
+tar -xf /sources/mpc-*.tar.* -C /tmp/ \
   && mv /tmp/mpc-* /tmp/mpc \
   && pushd /tmp/mpc
 

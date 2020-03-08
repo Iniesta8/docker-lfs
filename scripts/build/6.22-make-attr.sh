@@ -9,7 +9,7 @@ echo "Building Attr..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 4.2 MB"
 
-tar -xf /sources/attr-*.tar.gz -C /tmp/ \
+tar -xf /sources/attr-*.tar.* -C /tmp/ \
   && mv /tmp/attr-* /tmp/attr \
   && pushd /tmp/attr
 

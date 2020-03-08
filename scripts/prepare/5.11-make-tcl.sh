@@ -8,7 +8,7 @@ echo "Building Tcl..."
 echo "Approximate build time: 0.9 SBU"
 echo "Required disk space: 72 MB"
 
-tar -xf tcl*-src.tar.gz -C /tmp/ \
+tar -xf tcl*-src.tar.* -C /tmp/ \
   && mv /tmp/tcl* /tmp/tcl \
   && pushd /tmp/tcl
 

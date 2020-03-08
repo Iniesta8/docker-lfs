@@ -6,7 +6,7 @@ echo "Required disk space: 244 KB"
 
 # 7.2. LFS-Bootscripts package contains a set of scripts to start/stop
 # the LFS system at bootup/shutdown
-tar -xf /sources/lfs-bootscripts-*.tar.bz2 -C /tmp/ \
+tar -xf /sources/lfs-bootscripts-*.tar.* -C /tmp/ \
   && mv /tmp/lfs-bootscripts-* /tmp/lfs-bootscripts \
   && pushd /tmp/lfs-bootscripts
 

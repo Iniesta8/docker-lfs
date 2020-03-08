@@ -8,7 +8,7 @@ echo "Building Shadow..."
 echo "Approximate build time: 0.2 SBU"
 echo "Required disk space: 46 MB"
 
-tar -xf /sources/shadow-*.tar.xz -C /tmp/ \
+tar -xf /sources/shadow-*.tar.* -C /tmp/ \
   && mv /tmp/shadow-* /tmp/shadow \
   && pushd /tmp/shadow
 

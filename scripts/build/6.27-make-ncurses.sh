@@ -9,7 +9,7 @@ echo "Building ncurses..."
 echo "Approximate build time: 0.4 SBU"
 echo "Required disk space: 43 MB"
 
-tar -xf /sources/ncurses-*.tar.gz -C /tmp/ \
+tar -xf /sources/ncurses-*.tar.* -C /tmp/ \
   && mv /tmp/ncurses-* /tmp/ncurses \
   && pushd /tmp/ncurses
 

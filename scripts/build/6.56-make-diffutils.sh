@@ -9,7 +9,7 @@ echo "Building diffutils..."
 echo "Approximate build time: 0.4 SBU"
 echo "Required disk space: 36 MB"
 
-tar -xf /sources/diffutils-*.tar.xz -C /tmp/ \
+tar -xf /sources/diffutils-*.tar.* -C /tmp/ \
   && mv /tmp/diffutils-* /tmp/diffutils \
   && pushd /tmp/diffutils
 

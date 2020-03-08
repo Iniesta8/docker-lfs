@@ -8,7 +8,7 @@ echo "Building Grep..."
 echo "Approximate build time: 0.7 SBU"
 echo "Required disk space: 39 MB"
 
-tar -xf /sources/grep-*.tar.xz -C /tmp/ \
+tar -xf /sources/grep-*.tar.* -C /tmp/ \
   && mv /tmp/grep-* /tmp/grep \
   && pushd /tmp/grep
 

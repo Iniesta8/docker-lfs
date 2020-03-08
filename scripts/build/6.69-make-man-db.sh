@@ -8,7 +8,7 @@ echo "Building man-db..."
 echo "Approximate build time: 0.5 SBU"
 echo "Required disk space: 40 MB"
 
-tar -xf /sources/man-db-*.tar.xz -C /tmp/ \
+tar -xf /sources/man-db-*.tar.* -C /tmp/ \
   && mv /tmp/man-db-* /tmp/man-db \
   && pushd /tmp/man-db
 

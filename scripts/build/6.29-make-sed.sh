@@ -8,7 +8,7 @@ echo "Building Sed.."
 echo "Approximate build time: 0.4 SBU"
 echo "Required disk space: 34 MB"
 
-tar -xf /sources/sed-*.tar.xz -C /tmp/ \
+tar -xf /sources/sed-*.tar.* -C /tmp/ \
   && mv /tmp/sed-* /tmp/sed \
   && pushd /tmp/sed
 

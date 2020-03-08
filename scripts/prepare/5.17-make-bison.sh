@@ -8,7 +8,7 @@ echo "Building bison..."
 echo "Approximate build time:  0.3 SBU"
 echo "Required disk space: 43 MB"
 
-tar -xf bison-*.tar.xz -C /tmp/ \
+tar -xf bison-*.tar.* -C /tmp/ \
   && mv /tmp/bison-* /tmp/bison \
   && pushd /tmp/bison
 

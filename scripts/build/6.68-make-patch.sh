@@ -9,7 +9,7 @@ echo "Building patch..."
 echo "Approximate build time: 0.2 SBU"
 echo "Required disk space: 13 MB"
 
-tar -xf /sources/patch-*.tar.xz -C /tmp/ \
+tar -xf /sources/patch-*.tar.* -C /tmp/ \
   && mv /tmp/patch-* /tmp/patch \
   && pushd /tmp/patch
 

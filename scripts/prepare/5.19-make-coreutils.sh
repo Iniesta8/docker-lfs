@@ -9,7 +9,7 @@ echo "Building Coreutils..."
 echo "Approximate build time: 0.7 SBU"
 echo "Required disk space: 157 MB"
 
-tar -xf coreutils-*.tar.xz -C /tmp/ \
+tar -xf coreutils-*.tar.* -C /tmp/ \
   && mv /tmp/coreutils-* /tmp/coreutils \
   && pushd /tmp/coreutils
 

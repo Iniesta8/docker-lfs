@@ -11,7 +11,7 @@ echo "Building libstdc..."
 echo "Approximate build time: 0.5 SBU"
 echo "Required disk space: 878 MB"
 
-tar -xf gcc-*.tar.xz -C /tmp/ \
+tar -xf gcc-*.tar.* -C /tmp/ \
   && mv /tmp/gcc-* /tmp/gcc \
   && pushd /tmp/gcc
 

@@ -8,7 +8,7 @@ echo "Building Automake..."
 echo "Approximate build time: less than 0.1 SBU (about 8.1 SBU with tests)"
 echo "Required disk space: 107 MB"
 
-tar -xf /sources/automake-*.tar.xz -C /tmp/ \
+tar -xf /sources/automake-*.tar.* -C /tmp/ \
   && mv /tmp/automake-* /tmp/automake \
   && pushd /tmp/automake
 

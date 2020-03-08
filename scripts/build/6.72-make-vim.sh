@@ -8,7 +8,7 @@ echo "Building vim.."
 echo "Approximate build time: 1.7 SBU"
 echo "Required disk space: 202 MB"
 
-tar -xf /sources/vim-*.tar.bz2 -C /tmp/ \
+tar -xf /sources/vim-*.tar.* -C /tmp/ \
   && mv /tmp/vim* /tmp/vim \
   && pushd /tmp/vim
 

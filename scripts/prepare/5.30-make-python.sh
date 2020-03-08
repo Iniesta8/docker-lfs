@@ -10,7 +10,7 @@ echo "Building python3..."
 echo "Approximate build time: 1.3 SBU"
 echo "Required disk space: 409 MB"
 
-tar -xf Python-3*.tar.xz -C /tmp/ \
+tar -xf Python-3*.tar.* -C /tmp/ \
   && mv /tmp/Python-* /tmp/python3 \
   && pushd /tmp/python3
 

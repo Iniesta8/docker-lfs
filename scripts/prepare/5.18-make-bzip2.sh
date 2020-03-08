@@ -10,7 +10,7 @@ echo "Building bzip2..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 6.4 MB"
 
-tar -xf bzip2-*.tar.gz -C /tmp/ \
+tar -xf bzip2-*.tar.* -C /tmp/ \
   && mv /tmp/bzip2-* /tmp/bzip2 \
   && pushd /tmp/bzip2
 

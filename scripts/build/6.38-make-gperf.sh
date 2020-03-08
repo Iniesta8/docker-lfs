@@ -8,7 +8,7 @@ echo "Building gperf..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 6.3 MB"
 
-tar -xf /sources/gperf-*.tar.gz -C /tmp/ \
+tar -xf /sources/gperf-*.tar.* -C /tmp/ \
   && mv /tmp/gperf-* /tmp/gperf \
   && pushd /tmp/gperf
 

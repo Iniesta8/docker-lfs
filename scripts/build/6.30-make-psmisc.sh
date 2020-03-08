@@ -8,7 +8,7 @@ echo "Building Psmisc..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 4.6 MB"
 
-tar -xf /sources/psmisc-*.tar.xz -C /tmp/ \
+tar -xf /sources/psmisc-*.tar.* -C /tmp/ \
   && mv /tmp/psmisc-* /tmp/psmisc \
   && pushd /tmp/psmisc
 

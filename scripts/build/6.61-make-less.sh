@@ -8,7 +8,7 @@ echo "Building less..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 4.1 MB"
 
-tar -xf /sources/less-*.tar.gz -C /tmp/ \
+tar -xf /sources/less-*.tar.* -C /tmp/ \
   && mv /tmp/less-* /tmp/less \
   && pushd /tmp/less
 

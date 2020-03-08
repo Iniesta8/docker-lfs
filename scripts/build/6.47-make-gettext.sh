@@ -10,7 +10,7 @@ echo "Building gettext..."
 echo "Approximate build time: 2.7 SBU"
 echo "Required disk space: 249 MB"
 
-tar -xf /sources/gettext-*.tar.xz -C /tmp/ \
+tar -xf /sources/gettext-*.tar.* -C /tmp/ \
   && mv /tmp/gettext-* /tmp/gettext \
   && pushd /tmp/gettext
 

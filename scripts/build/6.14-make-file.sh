@@ -8,7 +8,7 @@ echo "Building file..."
 echo "Approximate build time: 0.1 SBU"
 echo "Required disk space: 20 MB"
 
-tar -xf /sources/file-*.tar.gz -C /tmp/ \
+tar -xf /sources/file-*.tar.* -C /tmp/ \
   && mv /tmp/file-* /tmp/file \
   && pushd /tmp/file
 

@@ -8,7 +8,7 @@ echo "Building Check..."
 echo "Approximate build time: 0.1 SBU (about 3.5 SBU with tests)"
 echo "Required disk space: 13 MB"
 
-tar -xf /sources/check-*.tar.gz -C /tmp/ \
+tar -xf /sources/check-*.tar.* -C /tmp/ \
   && mv /tmp/check-* /tmp/check \
   && pushd /tmp/check
 

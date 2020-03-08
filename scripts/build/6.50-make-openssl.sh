@@ -10,7 +10,7 @@ echo "Building OpenSSL..."
 echo "Approximate build time: 2.1 SBU"
 echo "Required disk space: 146 MB"
 
-tar -xf /sources/openssl-*.tar.gz -C /tmp/ \
+tar -xf /sources/openssl-*.tar.* -C /tmp/ \
   && mv /tmp/openssl-* /tmp/openssl \
   && pushd /tmp/openssl
 

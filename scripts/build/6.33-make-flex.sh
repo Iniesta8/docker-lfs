@@ -7,7 +7,7 @@ echo "Building Flex..."
 echo "Approximate build time: 0.4 SBU"
 echo "Required disk space: 36 MB"
 
-tar -xf /sources/flex-*.tar.gz -C /tmp/ \
+tar -xf /sources/flex-*.tar.* -C /tmp/ \
   && mv /tmp/flex-* /tmp/flex \
   && pushd /tmp/flex
 

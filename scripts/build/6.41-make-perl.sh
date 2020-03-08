@@ -8,7 +8,7 @@ echo "Building perl..."
 echo "Approximate build time: 9.2 SBU"
 echo "Required disk space: 272 MB"
 
-tar -xf /sources/perl-*.tar.xz -C /tmp/ \
+tar -xf /sources/perl-*.tar.* -C /tmp/ \
   && mv /tmp/perl-* /tmp/perl \
   && pushd /tmp/perl
 

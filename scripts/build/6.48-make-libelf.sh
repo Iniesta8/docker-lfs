@@ -8,7 +8,7 @@ echo "Building Libelf..."
 echo "Approximate build time: 0.9 SBU"
 echo "Required disk space: 124 MB"
 
-tar -xf /sources/elfutils-*.tar.bz2 -C /tmp/ \
+tar -xf /sources/elfutils-*.tar.* -C /tmp/ \
   && mv /tmp/elfutils-* /tmp/elfutils \
   && pushd /tmp/elfutils
 

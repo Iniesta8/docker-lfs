@@ -8,7 +8,7 @@ echo "Building gawk..."
 echo "Approximate build time: 0.4 SBU"
 echo "Required disk space: 47 MB"
 
-tar -xf /sources/gawk-*.tar.xz -C /tmp/ \
+tar -xf /sources/gawk-*.tar.* -C /tmp/ \
   && mv /tmp/gawk-* /tmp/gawk \
   && pushd /tmp/gawk
 

@@ -8,7 +8,7 @@ echo "Building Expat..."
 echo "Approximate build time: 0.1 SBU"
 echo "Required disk space: 11 MB"
 
-tar -xf /sources/expat-*.tar.bz2 -C /tmp/ \
+tar -xf /sources/expat-*.tar.* -C /tmp/ \
   && mv /tmp/expat-* /tmp/expat \
   && pushd /tmp/expat
 

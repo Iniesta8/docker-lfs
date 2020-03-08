@@ -5,7 +5,7 @@ echo "Approximate build time: 4.4 - 66.0 SBU (typically about 6 SBU)"
 echo "Required disk space: 960 - 4250 MB (typically about 1100 MB)"
 
 # 8.3. Linux package contains the Linux kernel
-tar -xf /sources/linux-*.tar.xz -C /tmp/ \
+tar -xf /sources/linux-*.tar.* -C /tmp/ \
   && mv /tmp/linux-* /tmp/linux \
   && pushd /tmp/linux
 

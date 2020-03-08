@@ -9,7 +9,7 @@ echo "Building e2fsprogs..."
 echo "Approximate build time: 3.3 SBU"
 echo "Required disk space: 58 MB"
 
-tar -xf /sources/e2fsprogs-*.tar.gz -C /tmp/ \
+tar -xf /sources/e2fsprogs-*.tar.* -C /tmp/ \
   && mv /tmp/e2fsprogs-* /tmp/e2fsprogs \
   && pushd /tmp/e2fsprogs
 

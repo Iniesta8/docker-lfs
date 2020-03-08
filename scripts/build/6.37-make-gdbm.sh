@@ -11,7 +11,7 @@ echo "Building GDBM..."
 echo "Approximate build time: 0.1 SBU"
 echo "Required disk space: 11 MB"
 
-tar -xf /sources/gdbm-*.tar.gz -C /tmp/ \
+tar -xf /sources/gdbm-*.tar.* -C /tmp/ \
   && mv /tmp/gdbm-* /tmp/gdbm \
   && pushd /tmp/gdbm
 

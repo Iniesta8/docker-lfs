@@ -9,7 +9,7 @@ echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 31 MB"
 
 # 6.8.1. Install Man-pages
-tar -xf /sources/man-pages-*.tar.xz -C /tmp/ \
+tar -xf /sources/man-pages-*.tar.* -C /tmp/ \
   && mv /tmp/man-pages-* /tmp/man-pages \
   && pushd /tmp/man-pages
 

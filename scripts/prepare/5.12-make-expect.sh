@@ -9,7 +9,7 @@ echo "Building expect..."
 echo "Approximate build time: 0.1 SBU"
 echo "Required disk space: 4.0 MB"
 
-tar -xf expect*.tar.gz -C /tmp/ \
+tar -xf expect*.tar.* -C /tmp/ \
   && mv /tmp/expect* /tmp/expect \
   && pushd /tmp/expect
 

@@ -15,7 +15,7 @@ echo "Building dbus..."
 echo "Approximate build time: 0.2 SBU"
 echo "Required disk space: 18 MB"
 
-tar -xf /sources/dbus-*.tar.xz -C /tmp/ \
+tar -xf /sources/dbus-*.tar.* -C /tmp/ \
   && mv /tmp/dbus-* /tmp/dbus \
   && pushd /tmp/dbus
 

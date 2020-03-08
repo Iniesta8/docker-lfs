@@ -8,7 +8,7 @@ echo "Building zlib..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 5.1 MB"
 
-tar -xf /sources/zlib-*.tar.xz -C /tmp/ \
+tar -xf /sources/zlib-*.tar.* -C /tmp/ \
   && mv /tmp/zlib-* /tmp/zlib \
   && pushd /tmp/zlib
 

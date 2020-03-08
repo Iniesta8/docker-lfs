@@ -8,7 +8,7 @@ echo "Building grub..."
 echo "Approximate build time: 0.8 SBU"
 echo "Required disk space: 161 MB"
 
-tar -xf /sources/grub-*.tar.xz -C /tmp/ \
+tar -xf /sources/grub-*.tar.* -C /tmp/ \
   && mv /tmp/grub-* /tmp/grub \
   && pushd /tmp/grub
 

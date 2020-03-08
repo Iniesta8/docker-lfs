@@ -8,7 +8,7 @@ echo "Building bc..."
 echo "Approximate build time: 0.1 SBU"
 echo "Required disk space: 2.9 MB"
 
-tar -xf /sources/bc-*.tar.gz -C /tmp/ \
+tar -xf /sources/bc-*.tar.* -C /tmp/ \
   && mv /tmp/bc-* /tmp/bc \
   && pushd /tmp/bc
 

@@ -10,7 +10,7 @@ echo "Building Util-linux..."
 echo "Approximate build time: 1.1 SBU"
 echo "Required disk space: 289 MB"
 
-tar -xf /sources/util-linux-*.tar.xz -C /tmp/ \
+tar -xf /sources/util-linux-*.tar.* -C /tmp/ \
   && mv /tmp/util-linux-* /tmp/util-linux \
   && pushd /tmp/util-linux
 

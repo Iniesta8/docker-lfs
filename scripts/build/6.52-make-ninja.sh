@@ -8,7 +8,7 @@ echo "Building Ninja..."
 echo "Approximate build time: 0.3 SBU"
 echo "Required disk space: 89 MB"
 
-tar -xf /sources/ninja-*.tar.gz -C /tmp/ \
+tar -xf /sources/ninja-*.tar.* -C /tmp/ \
   && mv /tmp/ninja-* /tmp/ninja \
   && pushd /tmp/ninja
 

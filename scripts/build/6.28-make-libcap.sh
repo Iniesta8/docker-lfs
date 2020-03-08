@@ -10,7 +10,7 @@ echo "Building Libcap.."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 8.5 MB"
 
-tar -xf /sources/libcap-*.tar.xz -C /tmp/ \
+tar -xf /sources/libcap-*.tar.* -C /tmp/ \
   && mv /tmp/libcap-* /tmp/libcap \
   && pushd /tmp/libcap
 

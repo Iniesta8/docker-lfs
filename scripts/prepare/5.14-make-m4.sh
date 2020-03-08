@@ -8,7 +8,7 @@ echo "Building m4..."
 echo "Approximate build time: 0.2 SBU"
 echo "Required disk space: 20 MB"
 
-tar -xf m4-*.tar.xz -C /tmp/ \
+tar -xf m4-*.tar.* -C /tmp/ \
   && mv /tmp/m4-* /tmp/m4 \
   && pushd /tmp/m4
 

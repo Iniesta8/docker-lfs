@@ -9,15 +9,15 @@ echo "Building gcc (pass 2)..."
 echo "Approximate build time: 13 SBU"
 echo "Required disk space: 3.7 GB"
 
-tar -xf gcc-*.tar.xz -C /tmp/ \
+tar -xf gcc-*.tar.* -C /tmp/ \
   && mv /tmp/gcc-* /tmp/gcc \
   && pushd /tmp/gcc
 
-tar -xf $LFS/sources/mpfr-*.tar.xz \
+tar -xf $LFS/sources/mpfr-*.tar.* \
   && mv -v mpfr-* mpfr
-tar -xf $LFS/sources/gmp-*.tar.xz \
+tar -xf $LFS/sources/gmp-*.tar.* \
   && mv -v gmp-* gmp
-tar -xf $LFS/sources/mpc-*.tar.gz \
+tar -xf $LFS/sources/mpc-*.tar.* \
   && mv -v mpc-* mpc
 
 cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \

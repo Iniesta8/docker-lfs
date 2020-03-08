@@ -10,7 +10,7 @@ echo "Building zstd..."
 echo "Approximate build time: 0.7 SBU"
 echo "Required disk space: 16 MB"
 
-tar -xf /sources/zstd-*.tar.xz -C /tmp/ \
+tar -xf /sources/zstd-*.tar.* -C /tmp/ \
   && mv /tmp/zstd-* /tmp/zstd \
   && pushd /tmp/zstd
 

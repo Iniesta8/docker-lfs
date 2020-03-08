@@ -8,7 +8,7 @@ echo "Building Iana-Etc..."
 echo "Approximate build time: less than 0.1 SBU"
 echo "Required disk space: 2.3 MB"
 
-tar -xf /sources/iana-etc-*.tar.bz2 -C /tmp/ \
+tar -xf /sources/iana-etc-*.tar.* -C /tmp/ \
   && mv /tmp/iana-etc-* /tmp/iana-etc \
   && pushd /tmp/iana-etc
 

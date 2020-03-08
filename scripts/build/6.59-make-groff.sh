@@ -8,7 +8,7 @@ echo "Building groff..."
 echo "Approximate build time: 0.5 SBU"
 echo "Required disk space: 95 MB"
 
-tar -xf /sources/groff-*.tar.gz -C /tmp/ \
+tar -xf /sources/groff-*.tar.* -C /tmp/ \
   && mv /tmp/groff-* /tmp/groff \
   && pushd /tmp/groff
 
