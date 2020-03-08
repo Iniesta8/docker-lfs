@@ -9,7 +9,7 @@ echo "Building systemd..."
 echo "Approximate build time: 0.6 SBU"
 echo "Required disk space: 238 MB"
 
-tar -xf /sources/systemd-*.tar.* -C /tmp/ \
+tar -xf /sources/systemd-*.tar.gz -C /tmp/ \
   && mv /tmp/systemd* /tmp/systemd \
   && pushd /tmp/systemd
 
@@ -23,7 +23,7 @@ for file in /tools/lib/lib{blkid,mount,uuid}.so*; do
 done
 
 # Set up the man pages:
-tar -xf ../systemd-man-pages-244.tar.*
+tar -xf /sources/systemd-man-pages-244.tar.*
 
 # Remove tests that cannot be built in chroot:
 sed '177,$ d' -i src/resolve/meson.build

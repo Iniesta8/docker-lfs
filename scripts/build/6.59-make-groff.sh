@@ -13,7 +13,7 @@ tar -xf /sources/groff-*.tar.* -C /tmp/ \
   && pushd /tmp/groff
 
 # Prepare Groff for compilation:
-PAGE=<paper_size> ./configure --prefix=/usr
+PAGE=A4 ./configure --prefix=/usr
 
 # This package does not support parallel build. Compile the package:
 make -j1
