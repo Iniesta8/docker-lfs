@@ -15,9 +15,9 @@ tar -xf tcl*-src.tar.* -C /tmp/ \
 cd unix \
   && ./configure --prefix=/tools
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
-if [ $LFS_TEST -eq 1 ]; then TZ=UTC make test; fi
+if [ "$LFS_TEST" -eq 1 ]; then TZ=UTC make test; fi
 
 make install
 

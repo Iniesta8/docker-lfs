@@ -18,7 +18,7 @@ sed -i '/def add_multiarch_paths/a \        return' setup.py
 
 ./configure --prefix=/tools --without-ensurepip
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
 make install
 

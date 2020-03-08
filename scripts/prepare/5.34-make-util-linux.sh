@@ -19,7 +19,7 @@ tar -xf util-linux-*.tar.* -C /tmp/ \
             --without-ncurses              \
             PKG_CONFIG=""
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 make install
 
 popd \

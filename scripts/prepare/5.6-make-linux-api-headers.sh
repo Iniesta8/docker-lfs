@@ -14,7 +14,7 @@ tar -xf linux-*.tar.* -C /tmp/ \
   && pushd /tmp/linux
 
 make mrproper
-make -j$JOB_COUNT headers
+make -j"$JOB_COUNT" headers
 
 cp -rv usr/include/* /tools/include
 

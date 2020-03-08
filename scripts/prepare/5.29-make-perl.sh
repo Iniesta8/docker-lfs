@@ -14,7 +14,7 @@ tar -xf perl-5*.tar.* -C /tmp/ \
 
 sh Configure -des -Dprefix=/tools -Dlibs=-lm -Uloclibpth -Ulocincpth
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
 cp -v perl cpan/podlators/scripts/pod2man /tools/bin
 mkdir -pv /tools/lib/perl5/5.30.1

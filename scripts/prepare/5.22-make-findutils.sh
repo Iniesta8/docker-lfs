@@ -18,11 +18,11 @@ tar -xf findutils-*.tar.* -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 make install
 
 popd \
-  && rm -rf /tmp/findutils || true
+  && (rm -rf /tmp/findutils || true)

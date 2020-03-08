@@ -15,9 +15,9 @@ tar -xf coreutils-*.tar.* -C /tmp/ \
 
 ./configure --prefix=/tools --enable-install-program=hostname
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
-if [ $LFS_TEST -eq 1 ]; then make RUN_EXPENSIVE_TESTS=yes check || true; fi
+if [ "$LFS_TEST" -eq 1 ]; then make RUN_EXPENSIVE_TESTS=yes check || true; fi
 
 make install
 

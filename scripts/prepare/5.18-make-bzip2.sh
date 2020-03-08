@@ -14,10 +14,10 @@ tar -xf bzip2-*.tar.* -C /tmp/ \
   && mv /tmp/bzip2-* /tmp/bzip2 \
   && pushd /tmp/bzip2
 
-make -j$JOB_COUNT -f Makefile-libbz2_so
+make -j"$JOB_COUNT" -f Makefile-libbz2_so
 make clean
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
 make PREFIX=/tools install
 cp -v bzip2-shared /tools/bin/bzip2

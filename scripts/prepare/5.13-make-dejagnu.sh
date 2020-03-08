@@ -14,9 +14,9 @@ tar -xf dejagnu-*.tar.* -C /tmp/ \
 
 ./configure --prefix=/tools
 
-make -j$JOB_COUNT install
+make -j"$JOB_COUNT" install
 
-if [ $LFS_TEST -eq 1 ]; then make check; fi
+if [ "$LFS_TEST" -eq 1 ]; then make check; fi
 
 popd \
   && rm -rf /tmp/dejagnu

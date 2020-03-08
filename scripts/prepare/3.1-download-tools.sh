@@ -3,7 +3,7 @@ set -e
 
 echo "Downloading toolchain..."
 
-pushd $LFS/sources
+pushd "$LFS"/sources
 
 case "$FETCH_TOOLCHAIN_MODE" in
   "0")

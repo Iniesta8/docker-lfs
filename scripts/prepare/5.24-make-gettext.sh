@@ -17,7 +17,7 @@ tar -xf gettext-*.tar.* -C /tmp/ \
 
 ./configure --disable-shared
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
 cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /tools/bin
 

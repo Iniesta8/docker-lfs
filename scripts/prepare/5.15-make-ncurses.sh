@@ -22,7 +22,7 @@ sed -i s/mawk// configure
             --enable-widec  \
             --enable-overwrite
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
 make install
 ln -s libncursesw.so /tools/lib/libncurses.so

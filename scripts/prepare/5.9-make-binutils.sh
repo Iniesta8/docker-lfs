@@ -26,7 +26,7 @@ RANLIB=$LFS_TGT-ranlib       \
   --with-lib-path=/tools/lib \
   --with-sysroot
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 make install
 
 make -C ld clean

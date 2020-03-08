@@ -7,7 +7,7 @@ echo "Running build..."
 # Prepartion
 sh /tools/6.2-prepare-vkfs.sh
 
-# enter and continue in chroot environment with tools
+# Enter and continue in chroot environment with tools
 chroot "$LFS" /tools/bin/env -i                 \
   HOME=/root TERM="$TERM" PS1='\u:\w\$ '        \
   PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \

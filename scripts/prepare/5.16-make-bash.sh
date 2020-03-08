@@ -15,9 +15,9 @@ tar -xf bash-*.tar.* -C /tmp/ \
 
 ./configure --prefix=/tools --without-bash-malloc
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
-if [ $LFS_TEST -eq 1 ]; then make tests; fi
+if [ "$LFS_TEST" -eq 1 ]; then make tests; fi
 
 make install
 

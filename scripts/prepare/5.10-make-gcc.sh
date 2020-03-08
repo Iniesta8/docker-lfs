@@ -13,15 +13,15 @@ tar -xf gcc-*.tar.* -C /tmp/ \
   && mv /tmp/gcc-* /tmp/gcc \
   && pushd /tmp/gcc
 
-tar -xf $LFS/sources/mpfr-*.tar.* \
+tar -xf "$LFS"/sources/mpfr-*.tar.* \
   && mv -v mpfr-* mpfr
-tar -xf $LFS/sources/gmp-*.tar.* \
+tar -xf "$LFS"/sources/gmp-*.tar.* \
   && mv -v gmp-* gmp
-tar -xf $LFS/sources/mpc-*.tar.* \
+tar -xf "$LFS"/sources/mpc-*.tar.* \
   && mv -v mpc-* mpc
 
 cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
-  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/include-fixed/limits.h \
+  "$(dirname "$("$LFS_TGT"-gcc -print-libgcc-file-name)")"/include-fixed/limits.h \
 
 for file in gcc/config/{linux,i386/linux{,64}}.h; do
   cp -uv $file{,.orig};
@@ -53,7 +53,7 @@ RANLIB=$LFS_TGT-ranlib                           \
   --disable-bootstrap                            \
   --disable-libgomp
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 make install
 
 ln -sv gcc /tools/bin/cc

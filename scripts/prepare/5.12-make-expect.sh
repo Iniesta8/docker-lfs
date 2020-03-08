@@ -20,9 +20,9 @@ sed 's:/usr/local/bin:/bin:' configure.orig > configure
             --with-tcl=/tools/lib \
             --with-tclinclude=/tools/include
 
-make -j$JOB_COUNT
+make -j"$JOB_COUNT"
 
-if [ $LFS_TEST -eq 1 ]; then make test; fi
+if [ "$LFS_TEST" -eq 1 ]; then make test; fi
 
 make SCRIPTS="" install
 
