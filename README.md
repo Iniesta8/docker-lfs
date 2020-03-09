@@ -3,7 +3,7 @@
 This repository contains a docker/podman configuration and shell scripts to build a bootable ISO
 image based on [Linux From Scratch 9.1 (systemd)](http://www.linuxfromscratch.org/lfs/downloads/9.1-systemd/LFS-BOOK-9.1-systemd.pdf).
 
-**Caution:** This project is still work in progress, but a working version will be available soon. :wink:
+**Caution:** This project is still work in progress, please fill an issue if there are any problems. :wink:
 
 ## Build
 
@@ -15,13 +15,6 @@ Use the following commands:
     sudo docker cp lfs:/tmp/lfs.iso .
 
 Please note that extended privileges are required by docker in order to execute some commands (e.g. mount).
-
-Therefore, I generally recommend using [Podman](https://podman.io/)!
-
-    podman rm lfs                                       && \
-    podman build --tag lfs:9.1-systemd -f ./Dockerfile  && \
-    podman run -it --name lfs lfs:9.1-systemd           && \
-    podman cp lfs:/tmp/lfs.iso .
 
 The created Ramdisk can be found at: /tmp/ramdisk.img
 
