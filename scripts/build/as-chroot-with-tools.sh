@@ -88,4 +88,4 @@ sh /tools/6.77-make-e2fsprogs.sh
 sh /tools/6.79-strip.sh
 sh /tools/6.80-clean.sh
 
-exit
+logout

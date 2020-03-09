@@ -19,4 +19,4 @@ sh /tools/8.4-setup-grub.sh
 # End
 sh /tools/9.1-the-end.sh
 
-exit
+logout

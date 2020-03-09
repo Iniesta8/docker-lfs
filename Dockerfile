@@ -5,6 +5,9 @@ LABEL description="Automated LFS build"
 LABEL version="9.1-systemd"
 LABEL maintainer="andi.schnebinger@googlemail.com"
 
+# Distribution codename
+ENV DISTRIB_CODENAME="my-linux"
+
 # LFS mount point
 ENV LFS=/mnt/lfs
 
@@ -13,6 +16,13 @@ ENV LC_ALL=POSIX
 ENV LFS_TGT=x86_64-lfs-linux-gnu
 ENV PATH=/tools/bin:/bin:/usr/bin:/sbin:/usr/sbin
 ENV MAKEFLAGS="-j 4"
+
+# Network configuration
+ENV NET_DEV_NAME "eth0"
+ENV NET_DEV_MAC "12:34:56:78:ab:cd"
+
+# Language configuration
+ENV LANG="en_US.UTF-8"
 
 # Defines how toolchain is fetched
 # 0 - use LFS wget file
@@ -111,7 +121,7 @@ RUN chown -v lfs $LFS/tools \
 
 # Avoid sudo password
 RUN echo "lfs ALL = NOPASSWD : ALL" >> /etc/sudoers
-RUN echo 'Defaults env_keep += "LFS LC_ALL LFS_TGT PATH MAKEFLAGS FETCH_TOOLCHAIN_MODE LFS_TEST LFS_DOCS JOB_COUNT LOOP IMAGE_SIZE INITRD_TREE IMAGE"' >> /etc/sudoers
+RUN echo 'Defaults env_keep += "LFS LC_ALL LFS_TGT PATH MAKEFLAGS FETCH_TOOLCHAIN_MODE LFS_TEST LFS_DOCS JOB_COUNT LOOP IMAGE_SIZE INITRD_TREE IMAGE NET_DEV_NAME NET_DEV_MAC LANG DISTRIB_CODENAME"' >> /etc/sudoers
 
 # Login as lfs user
 USER lfs

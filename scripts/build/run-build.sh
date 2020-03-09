@@ -14,7 +14,10 @@ chroot "$LFS" /tools/bin/env -i                 \
   LFS="$LFS" LC_ALL="$LC_ALL"                   \
   LFS_TGT="$LFS_TGT" MAKEFLAGS="$MAKEFLAGS"     \
   LFS_TEST="$LFS_TEST" LFS_DOCS="$LFS_DOCS"     \
-  JOB_COUNT="$JOB_COUNT"                        \
+  JOB_COUNT="$JOB_COUNT" LANG="$LANG"           \
+  NET_DEVICE_NAME="$NET_DEVICE_NAME"            \
+  NET_DEVICE_MAC="$NET_DEVICE_MAC"              \
+  DISTRIB_CODENAME="$DISTRIB_CODENAME"          \
   /tools/bin/bash --login +h                    \
   -c "sh /tools/as-chroot-with-tools.sh"
 
@@ -25,7 +28,10 @@ chroot "$LFS" /usr/bin/env -i                   \
   LFS="$LFS" LC_ALL="$LC_ALL"                   \
   LFS_TGT="$LFS_TGT" MAKEFLAGS="$MAKEFLAGS"     \
   LFS_TEST="$LFS_TEST" LFS_DOCS="$LFS_DOCS"     \
-  JOB_COUNT="$JOB_COUNT"                        \
+  JOB_COUNT="$JOB_COUNT" LANG="$LANG"           \
+  NET_DEVICE_NAME="$NET_DEVICE_NAME"            \
+  NET_DEVICE_MAC="$NET_DEVICE_MAC"              \
+  DISTRIB_CODENAME="$DISTRIB_CODENAME"          \
   /bin/bash --login                             \
   -c "sh /tools/as-chroot-with-usr.sh"
 

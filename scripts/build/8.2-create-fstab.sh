@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo "Creating fstab.."
+echo "Creating fstab..."
 
 # 8.2 Creating /etc/fstab
 cat > /etc/fstab <<"EOF"
