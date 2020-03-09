@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
-echo "Building bootable iso.."
 
-# copy kernel to isolinux folder
+echo "Building bootable iso..."
+
+# Copy kernel to isolinux folder
 cp $LFS/boot/vmlinuz-* isolinux/vmlinuz
 
-# build iso
+# Build iso
 genisoimage -o lfs.iso                \
             -b isolinux/isolinux.bin  \
             -c isolinux/boot.cat      \
