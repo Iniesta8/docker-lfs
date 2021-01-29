@@ -1,7 +1,7 @@
 ## Description
 
 This repository contains a docker/podman configuration and shell scripts to build a bootable ISO
-image based on [Linux From Scratch 9.1 (systemd)](http://www.linuxfromscratch.org/lfs/downloads/9.1-systemd/LFS-BOOK-9.1-systemd.pdf).
+image based on [Linux From Scratch 10.0 (systemd)](http://www.linuxfromscratch.org/lfs/downloads/10.0-systemd/LFS-BOOK-10.0-systemd.pdf).
 
 **Caution:** This project is still work in progress, please fill an issue if there are any problems. :wink:
 
@@ -9,9 +9,9 @@ image based on [Linux From Scratch 9.1 (systemd)](http://www.linuxfromscratch.or
 
 Use the following commands:
 
-    docker rm lfs                                               && \
-    docker build --tag lfs:9.1-systemd .                        && \
-    sudo docker run -it --privileged --name lfs lfs:9.1-systemd && \
+    docker rm lfs                                                && \
+    docker build --tag lfs:10.0-systemd .                        && \
+    sudo docker run -it --privileged --name lfs lfs:10.0-systemd && \
     sudo docker cp lfs:/tmp/lfs.iso .
 
 Please note that extended privileges are required by docker in order to execute some commands (e.g. mount).
@@ -27,4 +27,3 @@ example, can be used to load the system inside a virtual machine.
 
 This work is based on instructions from [Linux from Scratch](http://www.linuxfromscratch.org/lfs) project and provided with MIT license.
 
-This repository is also a fork of [reinterpretcat](https://github.com/reinterpretcat/lfs) to be ported to LFS version 9.1 based on systemd.

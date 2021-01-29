@@ -1,8 +1,8 @@
-FROM fedora:31
+FROM fedora:32
 
 # Image info
 LABEL description="Automated LFS build"
-LABEL version="9.1-systemd"
+LABEL version="10.0-systemd"
 LABEL maintainer="andi.schnebinger@googlemail.com"
 
 # Distribution codename
